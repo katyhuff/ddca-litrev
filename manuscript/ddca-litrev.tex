@@ -1,0 +1,121 @@
+\documentclass[3p,twocolumn]{elsarticle}
+
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+
+\usepackage{float} % used to help position figures with the H modifier
+
+%%%%%%%%%%% stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%
+\usepackage{listings} % for highlighted code blocks
+\usepackage{color}
+
+\lstset{basicstyle=\footnotesize\ttfamily}
+
+\definecolor{dkgreen}{rgb}{0.13, 0.55, 0.13}
+\lstdefinelanguage{diff}{
+  morecomment=[l][\color{blue}]{@@},     % group identifier
+  morecomment=[l][\color{red}]-,         % deleted lines
+  morecomment=[l][\color{dkgreen}]+,       % added lines
+  morecomment=[l][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
+  morecomment=[l][\color{magenta}]{+++},
+}
+\definecolor{bkggray}{rgb}{0.95,0.95,0.95}
+\lstset{
+    backgroundcolor=\color{bkggray}
+}
+%%%%%%%%%%% end stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%
+
+% hyphenated teletype
+\DeclareFontFamily{\encodingdefault}{\ttdefault}{\hyphenchar\font=`\-} 
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\usepackage{xspace}
+\usepackage{hyperref}
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+\newcommand{\Cyclus}{\textsc{Cyclus}\xspace}%
+\newcommand{\Cycamore}{\textsc{Cycamore}\xspace}%
+\newcommand{\Class}[1] {\texttt{#1}}%
+\newcommand{\TODO}[1] {{\color{red}\textbf{TODO: #1}}}%
+
+
+% watermark
+%\usepackage[printwatermark]{xwatermark}
+%\usepackage{xcolor}
+%\usepackage{graphicx}
+%\newwatermark[allpages,color=black!5,angle=45,scale=6,xpos=-40,ypos=40]{DRAFT}
+
+
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\journal{Journal To Be Determined}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+        \title{Current Status of Predictive Transition Capability in Fuel Cycle Simulation}
+
+%% Authors
+\input{authors}
+
+% Institutes of the authors
+\input{institutions}
+
+% Abstract
+\input{abs}
+
+\begin{keyword}
+nuclear fuel cycle \sep simulation \sep agent based modeling \sep nuclear 
+        engineering \sep statistical methods \sep systems analysis
+\end{keyword}
+
+\end{frontmatter}
+
+%\linenumbers
+
+\input{intro}
+\input{analysis}
+\input{conclusion}
+\input{acks}
+
+\bibliography{ddca-litrev}
+
+\end{document}

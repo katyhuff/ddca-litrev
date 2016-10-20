@@ -1,0 +1,89 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plain Cover Letter
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Rensselaer Polytechnic Institute (http://www.rpi.edu/dept/arc/training/latex/resumes/)
+% It was modified by Katy Huff
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{letter} % Default font size of the document, change to 10pt to fit more text
+\usepackage{graphicx}
+%\usepackage{newcent} % Default font is the New Century Schoolbook PostScript font
+%\usepackage{helvet} % Uncomment this (while commenting the above line) to use the Helvetica font
+
+% Margins
+\usepackage[left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+%\let\raggedleft\raggedright % Pushes the date (at the top) to the left, comment this line to have the date on the right
+
+\usepackage{eso-pic,graphicx}
+
+
+%--------------------------------------------------------------------------------------
+%--------INPUT DATA
+%--------------------------------------------------------------------------------------
+\usepackage{xspace}
+\newcommand{\RecipientName}{<+name+>\xspace}
+\newcommand{\RecipientAddress}{<+address+>\\
+<+addressline2+> \xspace}
+%\newcommand{\<++>}{<++>\xspace}
+
+
+\begin{document}
+\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{background.pdf}}
+
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{letter}{\RecipientName \\
+        \RecipientAddress}
+
+%-------------------------------------------------------------------------------
+%	YOUR NAME & ADDRESS SECTION
+%-------------------------------------------------------------------------------
+\address{Kathryn D. Huff\\
+118 Talbot Laboratory\\
+104 Wright Street\\
+MC-234\\
+Urbana, IL 61801}
+
+%-------------------------------------------------------------------------------
+%	LETTER CONTENT SECTION
+%-------------------------------------------------------------------------------
+
+\opening{Dear \RecipientName}
+
+
+Please find enclosed a manuscript entitled: ``<+title+>'' which I am submitting for exclusive 
+consideration of publication as a research article in <+Journal+>.
+
+This manuscript describes <++>.
+
+Thank you for your consideration of this work. I expect it will be of interest
+to a broad readership concerned with <+audienceinterests+>.  Please address all
+correspondence concerning this manuscript to me at the University of Illinois
+and feel free to correspond with me by e-mail.
+
+\closing{Sincere regards,
+\includegraphics[height=2cm]{signature}\\
+        \fromsig{Kathryn Huff\\
+Assistant Professor\\
+Nuclear, Plasma, \& Radiological Eng.\\
+U. Illinois at Urbana-Champaign}
+}
+
+%-------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}
