@@ -1,0 +1,77 @@
+\section{ Demand-driven deployment models}
+To predict the market demand for nuclear fuel cycle simulators, various algorithms
+can be adopted. The algorithms can be divided into three major
+branches, Non-optimizing, Deterministic Optimizing, and Stochastic
+Optimizing. Each groups vary in complexity, which leads to a difference
+in computing time and accuracy. The groups and their examples are 
+explained in detail below. 
+
+\subsection{Non-Optimizing(NO)}
+
+Non optimizing algorithms predict future deployment schedules
+only based on the past datasets. These algorithms do not attempt
+to minimize the difference of the produced quantity to the demand,
+thus the name non-optimizing. The simple nature of the algorithm
+allows fast execution time, but a drawback of low precision. The
+two main algorithms explored are \gls{ARMA}
+and \gls{ARCH} methods. 
+
+\subsubsection{Autoregressive Moving Average (ARMA)}
+
+\gls{ARMA} is a combination of two methods, the Autoregressive
+and the Moving Average model. The Autoregressive model 
+predicts future values by fitting a linear curve fit of the latest
+datasets, and the Moving Average method does so by fitting the 
+errors. \cite{intro_arma}
+
+The model is referred to as ARMA(p,q) format, where the p and q represent 
+the order of the autoregressive, and the moving average part,
+respectively. 
+The \gls{ARMA} model can be represented by the following equation:
+
+\begin{align} 
+	X_i=c + \epsilon_t + {\mathlarger{\sum}}_{i=1}^{p}\theta_i \cdot X_{t-i}+
+	 {\mathlarger{\sum}}_{j=1}^{q}\phi_j\cdot\epsilon_{t-j}\\
+	X_i= \mbox{next predicted value of the time series}\\
+	c= \mbox{adjustable constant}\\
+	\theta_i=i^{th} \mbox{parameter}\\
+	\phi_i=j^{th} \mbox{parameter of the moving average system}\\
+	\epsilon = \mbox{white noise}
+\end{align}
+
+
+\gls{ARMA} is applied to a 'well behaved' set of time series data,
+where there is little volatility. This makes \gls{ARMA} a suitable
+candidate for demand prediction for constant increase of number of
+reactors (caused by a constant increase of power demands).
+
+
+\subsubsection{Autoregressive Conditional Heteroskedastic (ARCH)}
+The \gls{ARCH} model is similar to the \gls{ARMA} model, except that
+it uses previous variance terms to calculate current error terms, instead
+of the value itself. This allows the model to be used in high volatile 
+time series like prediction of inflation or stock prices over time \cite{bollerselv_1986}.
+The \gls{ARCH} model can be represented by the following equation:
+
+\begin{align}
+	\epsilon_t^2 = \alpha_0+{\mathlarger{\sum}}_{i=1}^{q}\alpha_i\cdot\epsilon_{t-1}^2\\
+	\alpha_i= i^{th} \mbox{parameter of the conditional heteroskedastic model}
+\end{align}
+
+Since the demand trend interested in current \gls{NFC} simulations 
+(simple transition scenarios with constant increase of energy demand) are not
+volatile, the \gls{ARCH} model is not the most suitable
+model for \gls{NFC} simulations. However, if a simple transition
+scenario became volatile, for example by considering economics,
+\gls{ARCH} may become the more preferred model over the \gls{ARMA} model.
+
+
+
+
+\subsection{Deterministic-Optimizing (DO)}
+Soon to be added.
+
+
+
+
+
