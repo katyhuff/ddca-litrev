@@ -1,31 +1,32 @@
 \section{ Demand-driven deployment models}
-To predict the market demand for nuclear fuel cycle simulators, various algorithms
-can be adopted. The algorithms can be divided into three major
+To predict the market demand inside of nuclear fuel cycle simulators, various algorithms
+can be implemented. These can be divided into three major
 branches, Non-optimizing, Deterministic Optimizing, and Stochastic
-Optimizing. Each groups vary in complexity, which leads to a difference
-in computing time and accuracy. The groups and their examples are 
+Optimizing. Each vary in complexity, which leads to a difference
+in computing time and accuracy. The groups and examples of each are 
 explained in detail below. 
 
 \subsection{Non-Optimizing(NO)}
 
-Non optimizing algorithms predict future deployment schedules
-only based on the past datasets. These algorithms do not attempt
+Non-optimizing algorithms predict future deployment schedules
+only based on historical supply-demand data of the simulator. These algorithms do not attempt
 to minimize the difference of the produced quantity to the demand,
-thus the name non-optimizing. The simple nature of the algorithm
-allows fast execution time, but a drawback of low precision. The
-two main algorithms explored are \gls{ARMA}
+thus the name non-optimizing. The simple nature of this class of algorithms
+allows fast execution time, but only limited precision. The
+two non-optimizing algorithms explored in this paper are \gls{ARMA}
 and \gls{ARCH} methods. 
 
 \subsubsection{Autoregressive Moving Average (ARMA)}
 
-\gls{ARMA} is a combination of two methods, the Autoregressive
+\gls{ARMA} is a combination of two models, the Autoregressive
 and the Moving Average model. The Autoregressive model 
-predicts future values by fitting a linear curve fit of the latest
+predicts future values with a linear curve fit of the latest
 datasets, and the Moving Average method does so by fitting the 
 errors. \cite{intro_arma}
 
-The model is referred to as ARMA(p,q) format, where the p and q represent 
-the order of the autoregressive, and the moving average part,
+The model is referred to as ARMA(p,q), where the p and q represent 
+the order (number of previous time step values fitted) of the autoregressive,
+and the moving average parts,
 respectively. 
 The \gls{ARMA} model can be represented by the following equation:
 
@@ -58,13 +59,11 @@ The \gls{ARCH} model can be represented by the following equation:
 	\alpha_i= i^{th} \mbox{parameter of the conditional heteroskedastic model}
 \end{align}
 
-Since the demand trend interested in current \gls{NFC} simulations 
-(simple transition scenarios with constant increase of energy demand) are not
-volatile, the \gls{ARCH} model is not the most suitable
-model for \gls{NFC} simulations. However, if a simple transition
-scenario became volatile, for example by considering economics,
-\gls{ARCH} may become the more preferred model over the \gls{ARMA} model.
 
+In a general sense, a comprehensive fuel cycle simulator would require
+predictive capabilities for volatile environments, such as economics.
+In such a case, the \gls{ARCH} model may become the more preferred model
+over the \gls{ARMA} model.
 
 
 
