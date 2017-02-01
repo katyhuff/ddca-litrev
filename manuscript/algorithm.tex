@@ -68,9 +68,117 @@ over the \gls{ARMA} model.
 
 
 \subsection{Deterministic-Optimizing (DO)}
-Soon to be added.
+Deterministic-Optimizing algorithms use linear algebra to
+reach optimization of the objective function, which is
+constrained by various parameters. Compared to stochastic
+optimizing algorithms, deterministic-optimizing algorithms
+require less computing power, and is replicable. The most
+widely used class of deterministic optimizing algorithm
+is the \gls{LP} model. Simply put, this model optimizes a
+linear objective function where the variables are constrained
+by multiple constraints.
+
+For a demand-driven deployment scenario, an example can be made,
+where the following criterion are expressed in mathematical equations.
+
+\begin{itemize}
+	\item[] Objective Function : Minimize deployed facility capacity
+	\item[] Constraints:
+	\begin{enumerate}
+		\item Power demand
+		\item fuel supply - mining / fabrication / enrichment /reprocessing
+	\end{enumerate}
+		
+\end{itemize}
 
 
 
+Two major models that utilize deterministic-optimizing algorithms are
+\gls{GCAM} and \gls{MARKAL}. \gls{GCAM} explores consequences to global
+change by representing various aspects of economy, energy and the environment \cite{advanced_1994}.
+\gls{MARKAL} is a energy demand driven model that assesses the value of new
+energy technologies \cite{Markal_1981}. The optimization algorithms adopted
+by these models are further explained below.
 
+\subsubsection{ \gls{GCAM}}
+The \gls{GCAM} is a dynamic-recursive model that connects various
+social, economical, political decisions to climate change. 
+%something here?
+It determines the price vector that satisfies all markets by
+utilizing the GCAM solver, which finds the root of $\vec{y} = F(\vec{p})$,
+where $F(\vec{p})=0$. It does so by using two solver algorithms, the Bisection Method,
+and the Broyden's Method \cite{GCAM_solver}. 
+
+%subsubsubsection - maybe consider modifying \paragraph
+Bisection Method
+The Bisection Method finds the root, or $f(x)=0$, by first
+getting two x values that have opposite signs. Its flow is as follows:
+
+\begin{enumerate}
+	\item Initial upper and lower bounds, $x_l$ and $x_u$, respectively are set,
+	so that $f(x_l) \cdot f(x_u) <0 $.
+	\item Then the midpoint, $x_m$, is set, by $x_m = \frac{x_l+x_u}{2}$.
+	\item Then $f(x_l) \cdot f(x_m)$ is evaluated. If the result is negative,
+	then $x_u$ is updated to $x_m$. If the result is positive, $x_l$ is updated
+	to $x_m$. If the result is zero, $x_m$ is the root, and the loop is stopped.
+	\item Using the new $x_l$ or $x_u$ value, a new $x_m$ value is computed. Then
+	$\epsilon_{x_m}$ is calculated to see if it is smaller than a pre-specified tolerance,
+	input by the user. If it is, the loop is stopped, and $x_m$ is the output.
+	%maybe actually write out $\epsilon_a=\frac{x_m^new-x_m^old}{x_m^new} \cdot 100
+	\item If the $\epsilon_{x_m}$ is higher than the tolerance, steps 3 and 4 are repeated.
+\end{enumerate}
+
+
+The Bisection Method has the advantage that it requires little computing time
+to 'get close' to a solution. However, in a system of equations with multiple
+dimensions, it is sometimes not possible to even have rigorous bounds around 
+a solution. Thus, in \gls{GCAM}, the Bisection Method is used to get the 
+solver only 'near' the solution, then finds the solution using the Broyden's Method.
+
+%subsubsubsection
+Broyden's Method
+Broyden's Method is similar to Newton's method, but it saves computing 
+time by updating the Jacobian rather than computing it at every iteration. 
+
+\begin{enumerate}
+\item Guess initial x value, $x_0$.
+\item Evaluate $J(x_0)$ and $f(x_0)$.
+\item Calculate $J^{-1}(x_0).$
+\item Calculate $x_1 = x_0-J^{-1} \cdot (x_0) \cdot f(x_0)$.
+\item Calculate $\Delta F$, $\Delta x$, $\Delta x^T$, $|x|^2$.d
+\item Update Jacobian using $J_n = J_{n-1}+ \frac{\Delta F_n - J_{n-1} \cdot \Delta
+	 x_n}{|x_n|^2} \cdot \Delta x_n^T $.
+\item Repeat from step 4, but with $x_{n+1}$. Repeat so that $f(x_n)$ is less than the 
+convergence criterion.
+\end{enumerate}
+
+\subsubsection{\gls{MARKAL}}
+
+\gls{MARKAL} uses a general linear-programming algorithm to 
+optimize multiple objective functions, namely cost, security and
+other environmental functions, given a collection of constraints.
+The variables and the functions are listed in detail in the reference
+\cite{Markal_1981} \cite{User's_1979}. 
+
+%subsubsub
+Multi-objective linear-programming.
+The optimization algorithm in \gls{MARKAL} is a collection
+of objective functions, subject to a collection of constraints.
+The mathematical representation is as follows:
+
+\begin{itemize}
+	\item[] Minimize:
+	\[(\sum_i c_i \cdot X_i) \]
+	\item[]subject to:
+	\[ \sum_i a_{ji} \cdot X_i \ \leq , \geq \  b_j \] \quad \textrm{and} \quad \[ 	X_i \geq 0 \]
+	
+\end{itemize}
+	
+	
+
+Though it looks simple, the objective function and the
+constraints are complex models of the relations between
+numerous parameters. \gls{MARKAL} creates a matrix
+of all the coefficients for the \gls{LP} problem, and is
+solved. 
 
