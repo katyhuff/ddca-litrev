@@ -161,9 +161,18 @@ The variables and the functions are listed in detail in the reference
 \cite{Markal_1981} \cite{User's_1979}. 
 
 %subsubsub
-Multi-objective linear-programming.
+Multi-objective linear programming.
 The optimization algorithm in \gls{MARKAL} is a collection
 of objective functions, subject to a collection of constraints.
+
+Multi-objective linear programming is used in various applications,
+such as economics, finance, engineering design, and power systems
+\cite{dorfman_linear_1958}.
+It is used in cases where there are competing objectives that need
+an optimal decision. For example, a central bank may decide a monetary 
+policy to optimize its objectives to lower inflation, unemployment, 
+or interest rates. 
+ 
 The mathematical representation is as follows:
 
 \begin{itemize}
@@ -182,3 +191,69 @@ numerous parameters. \gls{MARKAL} creates a matrix
 of all the coefficients for the \gls{LP} problem, and is
 solved. 
 
+
+\subsection{Stochastic-Optimizing (SO)}
+Stochastic optimization refers to optimization methods
+that incorporate randomness in either the objective function
+or the constraints \cite{lauren_stochastic_2015}. It aims to find
+zeros for the objective function by generating random variables.
+This makes it fit for problems that contain uncertainty, which
+real world problems mostly are. 
+The random variables are defined by a probability distribution
+or sometimes just a few values.
+
+Mathematically, the method attempts to find properties of $f$ without
+evaluating $f$ directly, but using random samples of $F(\theta, \xi).$
+
+\begin{align}
+	f(\theta)= E_{\xi} [F(\theta, \xi)] \\
+	\xi = \mbox{random variable} \\
+	f(\theta) = \mbox{objective function} \\
+	F(\theta,\xi) = \mbox{ random samples created} \\
+\end{align}
+
+Few examples of the Stochastic-Optimizing method are
+the Markov Switching Model and the Gaussian Process Regression.
+
+
+\subsubsection{Markov Switching Model}
+The Markov Switching Model depends on the idea that
+the future is independent of the past, but only dependent
+on the present. It utilizes Markov Chains, which 
+are mathematical structures that either stay or hop to another
+'state', with certain probabilities.
+
+The Markov Model is in a wide variety of applications,
+such as predicting exchange rates \cite{engel_can_1994}, 
+labor markets \cite{krolzig_a_2002} to search trends \cite{bergamaschi_a_2011}.
+
+The Markov Switching Model uses two types of equations:
+measurement and transition equations \cite{ansari_predicting_2015}.
+The measurement equations determine how hidden states affect observed data,
+and transition equations define how the states evolve over time.
+%cite the proposal?
+The model is represented with the following equations:
+
+\begin{align}
+	y_t =a_{0,0} + a_{0,1} S_t + (a_{1,0}+a_{1,1} S_t) y_{t-1} +e_i \\
+	P_{ij}=P(S_t=j | S_{t-1} = i) \\
+	y_t = \mbox{observable random variable} \\
+	a = \mbox{drift term constant} \\
+	S_t = \mbox{hidden state variable} \\ 
+	e_i = \mbox{error} \\
+	P_{ij} = \mbox{probability of a transition in the hidden state variable} \\ 
+	
+\end{align}
+
+
+\subsection{Gaussian Process Regression}
+Gaussian Process Regression distributes a function as a Gaussian Process
+characterized by a mean function and a covariance function \cite{melo_gaussian_2012}.
+The mean value denotes the most probable output, and the covariance is the measure
+of confidence. 
+
+
+
+%demand for nuclear energy has been random
+%production of nuclear fuel will be more or less steady
+%the completion date may be random? uncertainty of ~+3 years?
