@@ -22,7 +22,7 @@ and \gls{ARCH} methods.
 and the Moving Average model. The Autoregressive model 
 predicts future values with a linear curve fit of the latest
 datasets, and the Moving Average method does so by fitting the 
-errors. \cite{intro_arma}
+errors \cite{stine_introduction_2011}.
 
 The model is referred to as ARMA(p,q), where the p and q represent 
 the order (number of previous time step values fitted) of the autoregressive,
@@ -51,7 +51,8 @@ reactors (caused by a constant increase of power demands).
 The \gls{ARCH} model is similar to the \gls{ARMA} model, except that
 it uses previous variance terms to calculate current error terms, instead
 of the value itself. This allows the model to be used in high volatile 
-time series like prediction of inflation or stock prices over time \cite{bollerselv_1986}.
+time series like prediction of inflation or stock prices over time 
+\cite{bollerslev_generalized_1986}.
 The \gls{ARCH} model can be represented by the following equation:
 
 \begin{align}
@@ -95,9 +96,10 @@ where the following criterion are expressed in mathematical equations.
 
 Two major models that utilize deterministic-optimizing algorithms are
 \gls{GCAM} and \gls{MARKAL}. \gls{GCAM} explores consequences to global
-change by representing various aspects of economy, energy and the environment \cite{advanced_1994}.
+change by representing various aspects of economy, energy and the environment 
+\cite{edmonds_advanced_1994}.
 \gls{MARKAL} is a energy demand driven model that assesses the value of new
-energy technologies \cite{Markal_1981}. The optimization algorithms adopted
+energy technologies \cite{fishbone_markal_1981}. The optimization algorithms adopted
 by these models are further explained below.
 
 \subsubsection{ \gls{GCAM}}
@@ -107,10 +109,9 @@ social, economical, political decisions to climate change.
 It determines the price vector that satisfies all markets by
 utilizing the GCAM solver, which finds the root of $\vec{y} = F(\vec{p})$,
 where $F(\vec{p})=0$. It does so by using two solver algorithms, the Bisection Method,
-and the Broyden's Method \cite{GCAM_solver}. 
+and the Broyden's Method \cite{patel_gcam_2016-1}. 
 
-%subsubsubsection - maybe consider modifying \paragraph
-Bisection Method
+\paragraph{Bisection Method}
 The Bisection Method finds the root, or $f(x)=0$, by first
 getting two x values that have opposite signs. Its flow is as follows:
 
@@ -135,8 +136,7 @@ dimensions, it is sometimes not possible to even have rigorous bounds around
 a solution. Thus, in \gls{GCAM}, the Bisection Method is used to get the 
 solver only 'near' the solution, then finds the solution using the Broyden's Method.
 
-%subsubsubsection
-Broyden's Method
+\paragraph{Broyden's Method}
 Broyden's Method is similar to Newton's method, but it saves computing 
 time by updating the Jacobian rather than computing it at every iteration. 
 
@@ -158,10 +158,10 @@ convergence criterion.
 optimize multiple objective functions, namely cost, security and
 other environmental functions, given a collection of constraints.
 The variables and the functions are listed in detail in the reference
-\cite{Markal_1981} \cite{User's_1979}. 
+\cite{fishbone_markal_1981} \cite{abilock_users_1979}. 
 
-%subsubsub
-Multi-objective linear programming.
+
+\paragraph{Multi-objective linear-programming.}
 The optimization algorithm in \gls{MARKAL} is a collection
 of objective functions, subject to a collection of constraints.
 Multi-objective linear programming is used in various applications,
