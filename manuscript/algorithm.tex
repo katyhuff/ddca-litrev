@@ -164,7 +164,6 @@ The variables and the functions are listed in detail in the reference
 Multi-objective linear programming.
 The optimization algorithm in \gls{MARKAL} is a collection
 of objective functions, subject to a collection of constraints.
-
 Multi-objective linear programming is used in various applications,
 such as economics, finance, engineering design, and power systems
 \cite{dorfman_linear_1958}.
@@ -196,14 +195,14 @@ solved.
 Stochastic optimization refers to optimization methods
 that incorporate randomness in either the objective function
 or the constraints \cite{lauren_stochastic_2015}. It aims to find
-zeros for the objective function by generating random variables.
+the roots for the objective function by generating random variables.
 This makes it fit for problems that contain uncertainty, which
 real world problems mostly are. 
 The random variables are defined by a probability distribution
 or sometimes just a few values.
 
 Mathematically, the method attempts to find properties of $f$ without
-evaluating $f$ directly, but using random samples of $F(\theta, \xi).$
+evaluating $f$ directly, but by using random samples of $F(\theta, \xi).$
 
 \begin{align}
 	f(\theta)= E_{\xi} [F(\theta, \xi)] \\
