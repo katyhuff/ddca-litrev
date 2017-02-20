@@ -31,13 +31,13 @@ respectively.
 The \gls{ARMA} model can be represented by the following equation:
 
 \begin{align} 
-	X_i=c + \epsilon_t + {\mathlarger{\sum}}_{i=1}^{p}\theta_i \cdot X_{t-i}+
+	X_i&=c + \epsilon_t + {\mathlarger{\sum}}_{i=1}^{p}\theta_i \cdot X_{t-i}+
 	 {\mathlarger{\sum}}_{j=1}^{q}\phi_j\cdot\epsilon_{t-j}\\
-	X_i= \mbox{next predicted value of the time series}\\
-	c= \mbox{adjustable constant}\\
-	\theta_i=i^{th} \mbox{parameter}\\
-	\phi_i=j^{th} \mbox{parameter of the moving average system}\\
-	\epsilon = \mbox{white noise}
+	X_i&= \mbox{next predicted value of the time series}\\
+	c&= \mbox{adjustable constant}\\
+	\theta_i&=i^{th} \mbox{parameter}\\
+	\phi_i&=j^{th} \mbox{parameter of the moving average system}\\
+	\epsilon &= \mbox{white noise}
 \end{align}
 
 
@@ -56,8 +56,8 @@ time series like prediction of inflation or stock prices over time
 The \gls{ARCH} model can be represented by the following equation:
 
 \begin{align}
-	\epsilon_t^2 = \alpha_0+{\mathlarger{\sum}}_{i=1}^{q}\alpha_i\cdot\epsilon_{t-1}^2\\
-	\alpha_i= i^{th} \mbox{parameter of the conditional heteroskedastic model}
+	\epsilon_t^2 &= \alpha_0+{\mathlarger{\sum}}_{i=1}^{q}\alpha_i\cdot\epsilon_{t-1}^2\\
+	\alpha_i&= i^{th} \mbox{parameter of the conditional heteroskedastic model}
 \end{align}
 
 
@@ -205,10 +205,10 @@ Mathematically, the method attempts to find properties of $f$ without
 evaluating $f$ directly, but by using random samples of $F(\theta, \xi).$
 
 \begin{align}
-	f(\theta)= E_{\xi} [F(\theta, \xi)] \\
-	\xi = \mbox{random variable} \\
-	f(\theta) = \mbox{objective function} \\
-	F(\theta,\xi) = \mbox{ random samples created} \\
+	f(\theta) &= E_{\xi} [F(\theta, \xi)] \\
+	\xi &= \mbox{random variable} \\
+	f(\theta) &= \mbox{objective function} \\
+	F(\theta,\xi) &= \mbox{ random samples created} \\
 \end{align}
 
 A few examples of the Stochastic-Optimizing method are
@@ -220,9 +220,9 @@ The Markov Switching Model depends on the idea that
 the future is independent of the past and only dependent
 on the present. It utilizes Markov Chains, which 
 characterize the probability of a system transitioning
-between states."
+between states.
 
-The Markov Model is in a wide variety of applications,
+The Markov Model is used in a wide variety of applications,
 such as predicting exchange rates \cite{engel_can_1994}, 
 labor markets \cite{krolzig_a_2002} to search trends \cite{bergamaschi_a_2011}.
 
@@ -233,14 +233,13 @@ and transition equations define how the states evolve over time.
 The model is represented with the following equations:
 
 \begin{align}
-	y_t =a_{0,0} + a_{0,1} S_t + (a_{1,0}+a_{1,1} S_t) y_{t-1} +e_i \\
-	P_{ij}=P(S_t=j | S_{t-1} = i) \\
-	y_t = \mbox{observable random variable} \\
-	a = \mbox{drift term constant} \\
-	S_t = \mbox{hidden state variable} \\ 
-	e_i = \mbox{error} \\
-	P_{ij} = \mbox{probability of a transition in the hidden state variable} \\ 
-	
+	y_t &=a_{0,0} + a_{0,1} S_t + (a_{1,0}+a_{1,1} S_t) y_{t-1} +e_i \\
+	P_{ij}&=P(S_t=j | S_{t-1} = i) \\
+	y_t &= \mbox{observable random variable} \\
+	a &= \mbox{drift term constant} \\
+	S_t &= \mbox{hidden state variable} \\ 
+	e_i &= \mbox{error} \\
+	P_{ij} &= \mbox{probability of a transition in the hidden state variable}  
 \end{align}
 
 
