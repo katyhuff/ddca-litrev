@@ -1,3 +1,36 @@
 \section{Other Uses of Dynamic Deployment}
 The concept of dynamic demand-driven deployment is not new,
-and has been used in various applications.
+and has been used in various applications. Various algorithms
+are used to optimize deployment of facility or utilization
+of given sources.
+
+\subsection{Aircraft Dispatch}
+To maximize fleet utilization and minimize
+operating costs, airlines predict future demands
+and optimize their flight schedule and aircraft
+type using linear programming methods \cite{berge_demand_1993}. The Demand
+Driven Dispatch process evaluates benefits and costs
+in various stages of an airline planning stage, like
+pricing, aircraft assignment, and crew scheduling \cite{shebalov_practical_2009}.
+
+\subsection{Timber Industry}
+A sawmill facility that processes timber contains 
+many steps, from sawing, drying to planning. An
+agent-based simulation is used to analyse demand-
+driven production planning \cite{yáñez_agent-based_2009}.
+The facility unit can be represented by a group of many facilities,
+for example, source, sawing operations, drying operations, warehouse,
+make, and delivery. In the simulation, each agents are given their parameters
+and model its procedures.
+
+The demand agent would communicate to the make agent of the demand plan,
+which will cause the make agent to communicate to the source agent. Then the
+analysed and planned supply chain will be moved back to the make agent and
+to the deliver agent.
+
+\begin{figure}
+	\includegraphics{width=\linewidth}{timber_process.jpg}
+	\caption{Agent Coordination Protocol}
+	\label{fig:timber_process}
+	\cite{yáñez_agent-based_2009}
+\end{figure}
