@@ -1,10 +1,9 @@
 \section{ Demand-driven deployment models}
 Various algorithms can be implemented in a nuclear fuel cycle simulator to 
-predict future demand of commodity markets.  These can be divided into three 
+predict demand in future commodity markets. These can be divided into three 
 major branches, Non-optimizing, Deterministic Optimizing, and Stochastic 
-Optimizing. Each vary in complexity, which leads to a difference in computing 
-time and accuracy. The groups and examples of each are explained in detail 
-below. 
+Optimizing. These vary in applicability, complexity, computing time, and 
+accuracy. Examples of each of the three categories are explained in detail below. 
 
 \subsection{Non-Optimizing(NO)}
 
@@ -60,10 +59,12 @@ The \gls{ARCH} model can be represented by the following equation:
 \end{align}
 
 
-In a general sense, a comprehensive fuel cycle simulator would require
-predictive capabilities for volatile environments, such as economics.
-In such a case, the \gls{ARCH} model may become the more preferred model
-over the \gls{ARMA} model.
+A comprehensive fuel cycle simulator must have predictive capabilities which 
+can handle the volatile dynamics of transitions between technolgies, upsets related to 
+unexpected facility shutdowns, the variability of an increasingly renewable 
+electric grid, and other nonlinearities of external economic drivers.
+In these cases, the \gls{ARCH} model is more generically applicable and should 
+therefore be preferred over the \gls{ARMA} model.
 
 
 
