@@ -198,11 +198,10 @@ or the constraints \cite{lauren_stochastic_2015}. It aims to find
 the roots for the objective function by generating random variables.
 This makes it fit for problems that contain uncertainty, which
 real world problems mostly are. 
-The random variables are defined by a probability distribution
-or sometimes just a few values.
-
 Mathematically, the method attempts to find properties of $f$ without
 evaluating $f$ directly, but by using random samples of $F(\theta, \xi).$
+The stochastic parameters driving the solution are typically sampled
+from probability distributions.
 
 \begin{align}
 	f(\theta) &= E_{\xi} [F(\theta, \xi)] \\
@@ -224,7 +223,7 @@ between states.
 
 The Markov Model is used in a wide variety of applications,
 such as predicting exchange rates \cite{engel_can_1994}, 
-labor markets \cite{krolzig_a_2002} to search trends \cite{bergamaschi_a_2011}.
+labor markets \cite{krolzig_a_2002} and search trends \cite{bergamaschi_a_2011}.
 
 \begin{align}
 	y_t &=a_{0,0} + a_{0,1} S_t + (a_{1,0}+a_{1,1} S_t) y_{t-1} +e_i \\
