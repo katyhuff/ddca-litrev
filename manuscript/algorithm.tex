@@ -1,16 +1,15 @@
 \section{ Demand-driven deployment models}
-To predict the market demand inside of nuclear fuel cycle simulators, various algorithms
-can be implemented. These can be divided into three major
-branches, Non-optimizing, Deterministic Optimizing, and Stochastic
-Optimizing. Each vary in complexity, which leads to a difference
-in computing time and accuracy. The groups and examples of each are 
-explained in detail below. 
+Various algorithms can be implemented in a nuclear fuel cycle simulator to 
+predict demand in future commodity markets. These can be divided into three 
+major branches, Non-optimizing, Deterministic Optimizing, and Stochastic 
+Optimizing. These vary in applicability, complexity, computing time, and 
+accuracy. Examples of each of the three categories are explained in detail below. 
 
 \subsection{Non-Optimizing(NO)}
 
 Non-optimizing algorithms predict future deployment schedules
-only based on historical supply-demand data of the simulator. These algorithms do not attempt
-to minimize the difference of the produced quantity to the demand,
+only based on historical supply-demand data. These algorithms do not attempt
+to minimize the difference between production and demand,
 thus the name non-optimizing. The simple nature of this class of algorithms
 allows fast execution time, but only limited precision. The
 two non-optimizing algorithms explored in this paper are \gls{ARMA}
@@ -41,18 +40,18 @@ The \gls{ARMA} model can be represented by the following equation:
 \end{align}
 
 
-\gls{ARMA} is applied to a 'well behaved' set of time series data,
+\gls{ARMA} is applied to a `well behaved' set of time series data,
 where there is little volatility. This makes \gls{ARMA} a suitable
-candidate for demand prediction for constant increase of number of
-reactors (caused by a constant increase of power demands).
+candidate for demand prediction in the case of slowly changing power demand and 
+corresponding reactor deployment.
 
 
 \subsubsection{Autoregressive Conditional Heteroskedastic (ARCH)}
 The \gls{ARCH} model is similar to the \gls{ARMA} model, except that
 it uses previous variance terms to calculate current error terms, instead
-of the value itself. This allows the model to be used in high volatile 
-time series like prediction of inflation or stock prices over time 
-\cite{bollerslev_generalized_1986}.
+of the value itself. This allows the model to be used in highly volatile 
+time series (e.g. prediction of inflation or stock prices over time 
+\cite{bollerslev_generalized_1986}).
 The \gls{ARCH} model can be represented by the following equation:
 
 \begin{align}
@@ -60,24 +59,25 @@ The \gls{ARCH} model can be represented by the following equation:
 	\alpha_i&= i^{th} \mbox{parameter of the conditional heteroskedastic model}
 \end{align}
 
-
-In a general sense, a comprehensive fuel cycle simulator would require
-predictive capabilities for volatile environments, such as economics.
-In such a case, the \gls{ARCH} model may become the more preferred model
-over the \gls{ARMA} model.
+A comprehensive fuel cycle simulator must have predictive capabilities which 
+can deploy fuel cycle support facilities intelligently even in the face of 
+volatile dynamics. Such volatility may arise during transitions between 
+technologies, from upsets related to unexpected facility shutdowns, due to the variability 
+of an increasingly renewable electric grid, or other nonlinear economic 
+drivers.  In these cases, the \gls{ARCH} model is more generically applicable 
+and should therefore be preferred over the \gls{ARMA} 
+model.
 
 
 
 \subsection{Deterministic-Optimizing (DO)}
-Deterministic-Optimizing algorithms use linear algebra to
-reach optimization of the objective function, which is
-constrained by various parameters. Compared to stochastic
-optimizing algorithms, deterministic-optimizing algorithms
-require less computing power, and is replicable. The most
-widely used class of deterministic optimizing algorithm
-is the \gls{LP} model. Simply put, this model optimizes a
-linear objective function where the variables are constrained
-by multiple constraints.
+Deterministic-Optimizing algorithms seek to minimize or maximize an objective 
+function with respect to a set of constraints. Compared to stochastic 
+optimizing algorithms, deterministic-optimizing algorithms require less 
+computing power, and are replicable. The most widely used class of deterministic 
+optimizing algorithm is the \gls{LP} model. Simply put, this model optimizes a 
+linear objective function where the variables are constrained by multiple 
+constraints.
 
 For a demand-driven deployment scenario, an example can be made,
 where the following criterion are expressed in mathematical equations.
@@ -95,7 +95,7 @@ where the following criterion are expressed in mathematical equations.
 
 
 Two major models that utilize deterministic-optimizing algorithms are
-\gls{GCAM} and \gls{MARKAL}. \gls{GCAM} explores consequences to global
+the \gls{GCAM} and the \gls{MARKAL} model. \gls{GCAM} explores consequences to global
 change by representing various aspects of economy, energy and the environment 
 \cite{edmonds_advanced_1994}.
 \gls{MARKAL} is a energy demand driven model that assesses the value of new
@@ -103,13 +103,13 @@ energy technologies \cite{fishbone_markal_1981}. The optimization algorithms ado
 by these models are further explained below.
 
 \subsubsection{ \gls{GCAM}}
-The \gls{GCAM} is a dynamic-recursive model that connects various
+\gls{GCAM} is a dynamic-recursive model that connects various
 social, economical, political decisions to climate change. 
 %something here?
 It determines the price vector that satisfies all markets by
 utilizing the GCAM solver, which finds the root of $\vec{y} = F(\vec{p})$,
 where $F(\vec{p})=0$. It does so by using two solver algorithms, the Bisection Method,
-and the Broyden's Method \cite{patel_gcam_2016-1}. 
+and Broyden's Method \cite{patel_gcam_2016-1}. 
 
 \paragraph{Bisection Method}
 The Bisection Method finds the root, or $f(x)=0$, by first
@@ -210,8 +210,8 @@ from probability distributions.
 	F(\theta,\xi) &= \mbox{ random samples created} \\
 \end{align}
 
-A few examples of the Stochastic-Optimizing method are
-the Markov Switching Model and Gaussian Process Regression.
+The Markov Switching Model and Gaussian Process Regression are key examples of 
+the Stochastic-Optimizing category of methods. 
 
 
 \subsubsection{Markov Switching Model}
