@@ -21,7 +21,7 @@ and \gls{ARCH} methods.
 and the Moving Average model. The Autoregressive model 
 predicts future values with a linear curve fit of the latest
 datasets, and the Moving Average method does so by fitting the 
-errors. \cite{intro_arma}
+errors \cite{stine_introduction_2011}.
 
 The model is referred to as ARMA(p,q), where the p and q represent 
 the order (number of previous time step values fitted) of the autoregressive,
@@ -30,13 +30,13 @@ respectively.
 The \gls{ARMA} model can be represented by the following equation:
 
 \begin{align} 
-	X_i=c + \epsilon_t + {\mathlarger{\sum}}_{i=1}^{p}\theta_i \cdot X_{t-i}+
+	X_i&=c + \epsilon_t + {\mathlarger{\sum}}_{i=1}^{p}\theta_i \cdot X_{t-i}+
 	 {\mathlarger{\sum}}_{j=1}^{q}\phi_j\cdot\epsilon_{t-j}\\
-	X_i= \mbox{next predicted value of the time series}\\
-	c= \mbox{adjustable constant}\\
-	\theta_i=i^{th} \mbox{parameter}\\
-	\phi_i=j^{th} \mbox{parameter of the moving average system}\\
-	\epsilon = \mbox{white noise}
+	X_i&= \mbox{next predicted value of the time series}\\
+	c&= \mbox{adjustable constant}\\
+	\theta_i&=i^{th} \mbox{parameter}\\
+	\phi_i&=j^{th} \mbox{parameter of the moving average system}\\
+	\epsilon &= \mbox{white noise}
 \end{align}
 
 
@@ -51,12 +51,12 @@ The \gls{ARCH} model is similar to the \gls{ARMA} model, except that
 it uses previous variance terms to calculate current error terms, instead
 of the value itself. This allows the model to be used in highly volatile 
 time series (e.g. prediction of inflation or stock prices over time 
-\cite{bollerselv_1986}).
+\cite{bollerslev_generalized_1986}).
 The \gls{ARCH} model can be represented by the following equation:
 
 \begin{align}
-	\epsilon_t^2 = \alpha_0+{\mathlarger{\sum}}_{i=1}^{q}\alpha_i\cdot\epsilon_{t-1}^2\\
-	\alpha_i= i^{th} \mbox{parameter of the conditional heteroskedastic model}
+	\epsilon_t^2 &= \alpha_0+{\mathlarger{\sum}}_{i=1}^{q}\alpha_i\cdot\epsilon_{t-1}^2\\
+	\alpha_i&= i^{th} \mbox{parameter of the conditional heteroskedastic model}
 \end{align}
 
 A comprehensive fuel cycle simulator must have predictive capabilities which 
@@ -96,9 +96,10 @@ where the following criterion are expressed in mathematical equations.
 
 Two major models that utilize deterministic-optimizing algorithms are
 \gls{GCAM} and \gls{MARKAL}. \gls{GCAM} explores consequences to global
-change by representing various aspects of economy, energy and the environment \cite{advanced_1994}.
+change by representing various aspects of economy, energy and the environment 
+\cite{edmonds_advanced_1994}.
 \gls{MARKAL} is a energy demand driven model that assesses the value of new
-energy technologies \cite{Markal_1981}. The optimization algorithms adopted
+energy technologies \cite{fishbone_markal_1981}. The optimization algorithms adopted
 by these models are further explained below.
 
 \subsubsection{ \gls{GCAM}}
@@ -108,10 +109,9 @@ social, economical, political decisions to climate change.
 It determines the price vector that satisfies all markets by
 utilizing the GCAM solver, which finds the root of $\vec{y} = F(\vec{p})$,
 where $F(\vec{p})=0$. It does so by using two solver algorithms, the Bisection Method,
-and the Broyden's Method \cite{GCAM_solver}. 
+and the Broyden's Method \cite{patel_gcam_2016-1}. 
 
-%subsubsubsection - maybe consider modifying \paragraph
-Bisection Method
+\paragraph{Bisection Method}
 The Bisection Method finds the root, or $f(x)=0$, by first
 getting two x values that have opposite signs. Its flow is as follows:
 
@@ -136,8 +136,7 @@ dimensions, it is sometimes not possible to even have rigorous bounds around
 a solution. Thus, in \gls{GCAM}, the Bisection Method is used to get the 
 solver only 'near' the solution, then finds the solution using the Broyden's Method.
 
-%subsubsubsection
-Broyden's Method
+\paragraph{Broyden's Method}
 Broyden's Method is similar to Newton's method, but it saves computing 
 time by updating the Jacobian rather than computing it at every iteration. 
 
@@ -159,12 +158,20 @@ convergence criterion.
 optimize multiple objective functions, namely cost, security and
 other environmental functions, given a collection of constraints.
 The variables and the functions are listed in detail in the reference
-\cite{Markal_1981} \cite{User's_1979}. 
+\cite{fishbone_markal_1981} \cite{abilock_users_1979}. 
 
-%subsubsub
-Multi-objective linear-programming.
+
+\paragraph{Multi-objective linear-programming.}
 The optimization algorithm in \gls{MARKAL} is a collection
 of objective functions, subject to a collection of constraints.
+Multi-objective linear programming is used in various applications,
+such as economics, finance, engineering design, and power systems
+\cite{dorfman_linear_1958}.
+It is used in cases where there are competing objectives that need
+an optimal decision. For example, a central bank may decide a monetary 
+policy to optimize its objectives to lower inflation, unemployment, 
+or interest rates. 
+ 
 The mathematical representation is as follows:
 
 \begin{itemize}
@@ -183,3 +190,60 @@ numerous parameters. \gls{MARKAL} creates a matrix
 of all the coefficients for the \gls{LP} problem, and is
 solved. 
 
+
+\subsection{Stochastic-Optimizing (SO)}
+Stochastic optimization refers to optimization methods
+that incorporate randomness in either the objective function
+or the constraints \cite{hannah_stochastic_2015}. It aims to find
+the roots for the objective function by generating random variables.
+This makes it fit for problems that contain uncertainty, which
+real world problems mostly are. 
+Mathematically, the method attempts to find properties of $f$ without
+evaluating $f$ directly, but by using random samples of $F(\theta, \xi).$
+The stochastic parameters driving the solution are typically sampled
+from probability distributions.
+
+\begin{align}
+	f(\theta) &= E_{\xi} [F(\theta, \xi)] \\
+	\xi &= \mbox{random variable} \\
+	f(\theta) &= \mbox{objective function} \\
+	F(\theta,\xi) &= \mbox{ random samples created} \\
+\end{align}
+
+A few examples of the Stochastic-Optimizing method are
+the Markov Switching Model and Gaussian Process Regression.
+
+
+\subsubsection{Markov Switching Model}
+The Markov Switching Model depends on the idea that
+the future is independent of the past and only dependent
+on the present. It utilizes Markov Chains, which 
+characterize the probability of a system transitioning
+between states.
+
+The Markov Model is used in a wide variety of applications,
+such as predicting exchange rates \cite{engel_can_1994}, 
+labor markets \cite{krolzig_markov-switching_2002} and search trends \cite{bergamaschi_hidden_2011}.
+
+\begin{align}
+	y_t &=a_{0,0} + a_{0,1} S_t + (a_{1,0}+a_{1,1} S_t) y_{t-1} +e_i \\
+	P_{ij}&=P(S_t=j | S_{t-1} = i) \\
+	y_t &= \mbox{observable random variable} \\
+	a &= \mbox{drift term constant} \\
+	S_t &= \mbox{hidden state variable} \\ 
+	e_i &= \mbox{error} \\
+	P_{ij} &= \mbox{probability of a transition in the hidden state variable}  
+\end{align}
+
+
+\subsection{Gaussian Process Regression}
+Gaussian Process Regression distributes a function as a Gaussian Process
+characterized by a mean function and a covariance function \cite{melo_gaussian_2012}.
+The mean value denotes the most probable output, and the covariance is the measure
+of confidence. 
+
+
+
+%demand for nuclear energy has been random
+%production of nuclear fuel will be more or less steady
+%the completion date may be random? uncertainty of ~+3 years?
