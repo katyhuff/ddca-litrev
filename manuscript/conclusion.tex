@@ -1,3 +1,4 @@
+
 \section{Conclusions}
 % summarize the conclusions of the paper as a list of short phrases or
 % sentences. Do not repeat the results section unless special emphasis is
@@ -9,17 +10,26 @@
 % What was learned?
 % Why does it make a difference?
 
-
         The review concludes that fuel cycle simulation tools approach scenario objective functions in 
         various ways.  Some wrap realizations of the simulator in an external 
         optimizer, while others employ look-ahead methods to predict malformed 
         simulation inputs.  These methods fail to realistically model the 
         process by which utilities, governments, and other stakeholders 
-        actually make facility deployment decisions. Dynamic, demand-driven 
-        facility deployment may be enabled by non-optimizing algorithms such as 
-        \gls{ARMA} \cite{woodard_stationarity_2011} and \gls{ARCH} 
-        \cite{li_kernel_2016}, deterministically 
-        optimizing methods such as those collected in \gls{GCAM} 
-        \cite{edmonds_advanced_1994} and \gls{MARKAL} 
-        \cite{fishbone_markal_1981}, or stochastic optimization 
-        techniques such as Markov Switching Models \cite{ansari_predicting_2015}.
+        actually make facility deployment decisions.  
+
+        Dynamic, demand-driven facility deployment may be enabled by algorithms 
+        in use in other fields.  Deployment models were categorized into into 
+        three categories: non optimizing (NO), deterministic-optimizing (DO), 
+        and stochastic-optimizing (SO). Among these, it characterizes 
+        performance (in terms of both compute speed and human effort), 
+        flexibility (in terms of the range of scenarios capably simulated), and 
+        robustness (in terms of consistent fidelity of the modeling results).  
+        
+        In conclusion, current NFC simulators may more flexibly support 
+        demand-driven deployment through incorporation of non-optimizing 
+        algorithms such as \gls{ARMA} \cite{woodard_stationarity_2011} and 
+        \gls{ARCH} \cite{li_kernel_2016}, deterministically optimizing methods 
+        such as those collected in \gls{GCAM} \cite{edmonds_advanced_1994} and 
+        \gls{MARKAL} \cite{fishbone_markal_1981}, or stochastic optimization 
+        techniques such as Markov Switching Models 
+        \cite{ansari_predicting_2015}.  
