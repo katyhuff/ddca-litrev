@@ -2,15 +2,14 @@
 Various algorithms can be implemented in a nuclear fuel cycle simulator to 
 predict demand in future commodity markets. These can be divided into three 
 major branches, Non-optimizing, Deterministic Optimizing, and Stochastic 
-Optimizing. These vary in applicability, complexity, computing time, and 
+Optimizing. These vary in applicability, complexity, compute time, and 
 accuracy. Examples of each of the three categories are explained in detail below. 
 
 \subsection{Non-Optimizing(NO)}
 
 Non-optimizing algorithms predict future deployment schedules
-only based on historical supply-demand data. These algorithms do not attempt
-to minimize the difference between production and demand,
-thus the name non-optimizing. The simple nature of this class of algorithms
+based on historical supply-demand data from the simulator. These algorithms do not attempt
+to meet demand optimally, thus the name `non-optimizing'. The simple nature of this class of algorithms
 allows fast execution time, but only limited precision. The
 two non-optimizing algorithms explored in this paper are \gls{ARMA}
 and \gls{ARCH} methods. 
