@@ -1,5 +1,4 @@
 \section{State of The Art}
-
 We reviewed existing public literature regarding 15 fuel cycle simulators to 
 determine the extent to which those simulators (1) automatically deploy reactors to 
 meet power demand and (2) automatically deploy supporting fuel cycle facilities 
@@ -7,10 +6,11 @@ to meet support demands. The fuel cycle simulation tools reviewed included:
 \begin{itemize}
         \item CAFCA (MIT) \cite{guerin_impact_2009}
         \item CLASS (CNRS/IRSN) \cite{mouginot_class_2012}
-        \item COSI (CEA) 
-                \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010}
-        \item DANESS (ANL) \cite{van_den_durpel_daness:_2006}
+        \item COSI (CEA) \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010}
+        \item \Cyclus (UW) \cite{huff_fundamental_2014} % manual
         \item DESAE (Rosatom) \cite{boucher_international_2010}
+        \item DANESS (ANL) \cite{van_den_durpel_daness:_2006} % proportional
+        \item DYMOND (ANL) \cite{boucher_international_2010}
         \item Evolcode (CIEMAT) \cite{boucher_international_2010}
         \item FAMILY (IAEA) \cite{boucher_international_2010}
         \item MARKAL (BNL) \cite{feng_standardized_2016}
@@ -23,7 +23,8 @@ to meet support demands. The fuel cycle simulation tools reviewed included:
 \end{itemize}
 
 We found that automated deployment of supportive fuel cycle facilities is naiive or 
-nonexstent in most simulators. 
+nonexstent in most simulators, including the one under development by the 
+authors, \Cyclus.
 
 For the majority of simulators, automated deployment is limited to deploying 
 reactors based on changes in power demand. 
