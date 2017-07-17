@@ -1,0 +1,88 @@
+\section{State of The Art}
+We reviewed existing public literature regarding 15 fuel cycle simulators to 
+determine the extent to which those simulators (1) automatically deploy reactors to 
+meet power demand and (2) automatically deploy supporting fuel cycle facilities 
+to meet support demands. The fuel cycle simulation tools reviewed included:
+\begin{itemize}
+        \item CAFCA (MIT) \cite{guerin_impact_2009}
+        \item CLASS (CNRS/IRSN) \cite{mouginot_class_2012}
+        \item COSI (CEA) \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010}
+        \item \Cyclus (UW) \cite{huff_fundamental_2014} % manual
+        \item DESAE (Rosatom) \cite{boucher_international_2010}
+        \item DANESS (ANL) \cite{van_den_durpel_daness:_2006} % proportional
+        \item DYMOND (ANL) \cite{boucher_international_2010}
+        \item Evolcode (CIEMAT) \cite{boucher_international_2010}
+        \item FAMILY (IAEA) \cite{boucher_international_2010}
+        \item MARKAL (BNL) \cite{feng_standardized_2016}
+        \item NFCSim (LANL) \cite{schneider_nfcsim:_2005}
+        \item NGSAM (ORNL) \cite{aubin_development_2013}
+        \item NUWASTE (NWTRB) \cite{garrick_nuclear_2011}
+        \item ORION (NNL) \cite{feng_standardized_2016}
+        \item VISION (INL) \cite{feng_standardized_2016,boucher_international_2010}
+        \item VISTA (IAEA) \cite{iaea_nuclear_2007}
+\end{itemize}
+
+We found that automated deployment of supportive fuel cycle facilities is naiive or 
+nonexstent in most simulators, including the one under development by the 
+authors, \Cyclus.
+
+For the majority of simulators, automated deployment is limited to deploying 
+reactors based on changes in power demand. 
+For example, as the simulation 
+progresses, additional reactors are deployed to meet a power demand projection 
+(e.g. 2\% growth over 100 years). 
+However, supportive fuel cycle facilities must also be deployed in response to 
+(or, more realistically, in preparation for) reactor deployment.  
+Typically, current simulators rely on manual deployment of fuel cycle 
+facilities. To reduce effort and the likelihood of a failed simulation, the 
+user often deploys all potentially necessary fuel cycle facilities at the start 
+of the simulation with conservative or infinite throughput capacities. 
+
+Current strategies can be categorized into four genres: 
+
+\begin{itemize}
+        \item \textbf{manual:} The user 'guesses' future needed fuel cycle facility 
+                deployment needed to support simulated reactors.
+                rather than the other way around. 
+        \item \textbf{proportional:} Deployment of fuel cycle facilities is in 
+                direct proportion with reactor deployments (e.g. for every 10 
+                new fast reactors, deploy a new reprocessing plant).
+        \item \textbf{constrained reactor deployment:} Deployment of reactors is 
+                constrained by the existing and projected feedstock amounts, 
+        \item \textbf{predictive:} The simulator projects feedstock needs of 
+                current and future deployed reactors based on other heuristics 
+                and look-ahead predictions. 
+\end{itemize}
+
+Each will be discussed, but the focus of this paper will be to improve on the 
+current state of the art implementations of the fourth category, predictive 
+methods. 
+
+\subsection{Manual Deployment}
+Most software does it this way. Double check each and list them. 
+
+\subsection{Proportional Deployment}
+
+Whether any predictive method can outperform conservative proportional 
+deployment is an open question. 
+
+\subsection{Contrained Reactor Deployment}
+
+This may be the most realistic approach (, but is unique to the NFCSim 
+model?). Strategies for deployment which are facility agnostic and target 
+objective functions related to more wholistic metrics may better inform policy. 
+However, deploying reactors based on the existence and projection of supportive 
+fuel feedstock is closely reflective of the reality regarding next generation 
+reactors. The United States, for example, would not build a first of a kind 
+reactor without mature fuel fabrication capabilities. In the case of 
+conventional reactors, the realism of this model breaks down, given the broad 
+availability of conventional reactor fuel fabrication capacity.  
+
+
+A constraint not implemented in any existing simulator is related to the impact 
+of pricing and economics on this question. If the fuel is available, but only 
+for an exorbitant price, the reactor might not be built. 
+
+\subsection{Predictive Deployment}
+I think orion does this. 
+
