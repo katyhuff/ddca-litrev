@@ -4,10 +4,10 @@ determine the extent to which those simulators (1) automatically deploy reactors
 meet power demand and (2) automatically deploy supporting fuel cycle facilities 
 to meet support demands. The fuel cycle simulation tools reviewed included:
 \begin{itemize}
-        \item CAFCA (MIT) \cite{guerin_impact_2009}
-        \item CLASS (CNRS/IRSN) \cite{mouginot_class_2012}
+        \item CAFCA (MIT) \cite{guerin_impact_2009} % manual
+        \item CLASS (CNRS/IRSN) \cite{mouginot_class_2012} 
         \item COSI (CEA) \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010}
-        \item \Cyclus (UW) \cite{huff_fundamental_2014} % manual
+        \item \Cyclus (UW) \cite{huff_fundamental_2014} % reactor demand or manual
         \item DESAE (Rosatom) \cite{boucher_international_2010}
         \item DANESS (ANL) \cite{van_den_durpel_daness:_2006} % proportional
         \item DYMOND (ANL) \cite{boucher_international_2010}
@@ -26,14 +26,41 @@ We found that automated deployment of supportive fuel cycle facilities is naiive
 nonexstent in most simulators, including the one under development by the 
 authors, \Cyclus.
 
-For the majority of simulators, automated deployment is limited to deploying 
-reactors based on changes in power demand. 
+\begin{table}
+\begin{tabularx}{\textwidth}{r|l|l|l|X}
+        \textbf{Simulator} & \textbf{Institution} & \textbf{Reference} & \textbf{Reactor} & \textbf{Fuel Cycle Facility}\\
+        &&& \textbf{Deployment} & \textbf{Deployment}\\
+        \hline
+        CAFCA & MIT &  \cite{guerin_impact_2009} & manual & manual \\
+        CLASS & CNRS/IRSN & \cite{mouginot_class_2012} & manual & manual \\
+        COSI & CEA & 
+        \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & demand & look-ahead \\
+        \Cyclus & UW & \cite{huff_fundamental_2014} & demand & manual \\ 
+        DESAE & Rosatom & \cite{boucher_international_2010} & manual & manual \\
+        DANESS & ANL & \cite{van_den_durpel_daness:_2006} & demand & proportional \\
+        DYMOND & ANL & \cite{park_modeling_2005} & demand & look-ahead \\
+        Evolcode & CIEMAT & \cite{boucher_international_2010} & demand & manual \\
+        FAMILY &  IAEA & \cite{boucher_international_2010} & automatic & look-ahead \\
+        MARKAL & BNL & \cite{feng_standardized_2016} & demand & manual \\
+        NFCSim & LANL & \cite{schneider_nfcsim:_2005} & demand & look-ahead \\
+        NGSAM & ORNL & \cite{aubin_development_2013} & none & manual \\
+        NUWASTE & NWTRB & \cite{garrick_nuclear_2011} & manual & manual \\
+        ORION & NNL &\cite{feng_standardized_2016} & demand & proportional \\
+        VISION & INL & \cite{feng_standardized_2016,boucher_international_2010} & demand & proportional \\
+        VISTA & IAEA & \cite{iaea_nuclear_2007}  & demand & proportional \\
+\end{tabularx}
+\end{table}
+
+
+The majority of simulators automatically deploy 
+reactors based on changes in power demand, but necessary fuel cycle facilities 
+are not deployed automatically.
 For example, as the simulation 
 progresses, additional reactors are deployed to meet a power demand projection 
 (e.g. 2\% growth over 100 years). 
 However, supportive fuel cycle facilities must also be deployed in response to 
 (or, more realistically, in preparation for) reactor deployment.  
-Typically, current simulators rely on manual deployment of fuel cycle 
+Typically, current simulators manually deploy fuel cycle 
 facilities. To reduce effort and the likelihood of a failed simulation, the 
 user often deploys all potentially necessary fuel cycle facilities at the start 
 of the simulation with conservative or infinite throughput capacities. 

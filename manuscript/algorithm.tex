@@ -1,9 +1,9 @@
 \section{Promising Algorithms}
-Various algorithms can be implemented in a nuclear fuel cycle simulator to 
-predict demand in future commodity markets. These can be divided into three 
-major branches, Non-optimizing, Deterministic Optimizing, and Stochastic 
-Optimizing. These vary in applicability, complexity, compute time, and 
-accuracy. Examples of each of the three categories are explained in detail below. 
+Various algorithms can predict commodity demands within a nuclear fuel cycle 
+simulator.  These can be divided into three major branches, Non-optimizing, 
+Deterministic Optimizing, and Stochastic Optimizing. These vary in 
+applicability, complexity, compute time, and accuracy. We explain the three 
+categories below.
 
 \subsection{Non-Optimizing(NO)}
 
@@ -16,7 +16,7 @@ and \gls{ARCH} methods.
 
 \subsubsection{Autoregressive Moving Average (ARMA)}
 
-\gls{ARMA} is a combination of two models, the Autoregressive
+\gls{ARMA} combines two models, the Autoregressive
 and the Moving Average model. The Autoregressive model 
 predicts future values with a linear curve fit of the latest
 datasets, and the Moving Average method does so by fitting the 
@@ -39,10 +39,10 @@ The \gls{ARMA} model can be represented by the following equation:
 \end{align}
 
 
-\gls{ARMA} is applied to a `well behaved' set of time series data,
-where there is little volatility. This makes \gls{ARMA} a suitable
-candidate for demand prediction in the case of slowly changing power demand and 
-corresponding reactor deployment.
+\gls{ARMA} is applicable for `well behaved' time series data, where there is 
+little volatility. Thus, \gls{ARMA} can predict demand in the case of slowly 
+changing power demand and corresponding facility deployment. However, quickly 
+changing conditions will challenge the \gls{ARMA} method.
 
 
 \subsubsection{Autoregressive Conditional Heteroskedastic (ARCH)}
@@ -63,18 +63,18 @@ can deploy fuel cycle support facilities intelligently even in the face of
 volatile dynamics. Such volatility may arise during transitions between 
 technologies, from upsets related to unexpected facility shutdowns, due to the variability 
 of an increasingly renewable electric grid, or other nonlinear economic 
-drivers.  In these cases, the \gls{ARCH} model is more generically applicable 
-and should therefore be preferred over the \gls{ARMA} 
+drivers.  In these cases, the \gls{ARCH} model is more
+should be preferred over the \gls{ARMA} 
 model.
 
 
 
 \subsection{Deterministic-Optimizing (DO)}
 Deterministic-Optimizing algorithms seek to minimize or maximize an objective 
-function with respect to a set of constraints. Compared to stochastic 
-optimizing algorithms, deterministic-optimizing algorithms require less 
-computing power, and are replicable. The most widely used class of deterministic 
-optimizing algorithm is the \gls{LP} model. Simply put, this model optimizes a 
+function with respect to a set of constraints.
+Deterministic-optimizing algorithms require less 
+computing power than stochastic optimizing algorithms. The \gls{LP} model is the most widely used class of deterministic 
+optimizing algorithm. It optimizes a 
 linear objective function where the variables are constrained by multiple 
 constraints.
 
