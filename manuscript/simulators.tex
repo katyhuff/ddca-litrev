@@ -7,10 +7,10 @@ to meet support demands. The fuel cycle simulation tools reviewed included:
         \item CAFCA (MIT) \cite{guerin_impact_2009} % manual
         \item CLASS (CNRS/IRSN) \cite{mouginot_class_2012} 
         \item COSI (CEA) \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010}
-        \item \Cyclus (UW) \cite{huff_fundamental_2014} % reactor demand or manual
+        \item \Cyclus (UW) \cite{huff_fundamental_2016} % reactor demand or manual
         \item DESAE (Rosatom) \cite{boucher_international_2010}
         \item DANESS (ANL) \cite{van_den_durpel_daness:_2006} % proportional
-        \item DYMOND (ANL) \cite{boucher_international_2010}
+        \item DYMOND (ANL) \cite{park_modeling_2003}
         \item Evolcode (CIEMAT) \cite{boucher_international_2010}
         \item FAMILY (IAEA) \cite{boucher_international_2010}
         \item MARKAL (BNL) \cite{feng_standardized_2016}
@@ -26,30 +26,6 @@ We found that automated deployment of supportive fuel cycle facilities is naiive
 nonexstent in most simulators, including the one under development by the 
 authors, \Cyclus.
 
-\begin{table}
-\begin{tabularx}{\textwidth}{r|l|l|l|X}
-        \textbf{Simulator} & \textbf{Institution} & \textbf{Reference} & \textbf{Reactor} & \textbf{Fuel Cycle Facility}\\
-        &&& \textbf{Deployment} & \textbf{Deployment}\\
-        \hline
-        CAFCA & MIT &  \cite{guerin_impact_2009} & manual & manual \\
-        CLASS & CNRS/IRSN & \cite{mouginot_class_2012} & manual & manual \\
-        COSI & CEA & 
-        \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & demand & look-ahead \\
-        \Cyclus & UW & \cite{huff_fundamental_2014} & demand & manual \\ 
-        DESAE & Rosatom & \cite{boucher_international_2010} & manual & manual \\
-        DANESS & ANL & \cite{van_den_durpel_daness:_2006} & demand & proportional \\
-        DYMOND & ANL & \cite{park_modeling_2005} & demand & look-ahead \\
-        Evolcode & CIEMAT & \cite{boucher_international_2010} & demand & manual \\
-        FAMILY &  IAEA & \cite{boucher_international_2010} & automatic & look-ahead \\
-        MARKAL & BNL & \cite{feng_standardized_2016} & demand & manual \\
-        NFCSim & LANL & \cite{schneider_nfcsim:_2005} & demand & look-ahead \\
-        NGSAM & ORNL & \cite{aubin_development_2013} & none & manual \\
-        NUWASTE & NWTRB & \cite{garrick_nuclear_2011} & manual & manual \\
-        ORION & NNL &\cite{feng_standardized_2016} & demand & proportional \\
-        VISION & INL & \cite{feng_standardized_2016,boucher_international_2010} & demand & proportional \\
-        VISTA & IAEA & \cite{iaea_nuclear_2007}  & demand & proportional \\
-\end{tabularx}
-\end{table}
 
 
 The majority of simulators automatically deploy 
@@ -65,7 +41,9 @@ facilities. To reduce effort and the likelihood of a failed simulation, the
 user often deploys all potentially necessary fuel cycle facilities at the start 
 of the simulation with conservative or infinite throughput capacities. 
 
-Current strategies can be categorized into four genres: 
+Current strategies for fuel cycle facility deployment can be categorized into 
+four genres: 
+
 
 \begin{itemize}
         \item \textbf{manual:} The user 'guesses' future needed fuel cycle facility 
@@ -80,6 +58,36 @@ Current strategies can be categorized into four genres:
                 current and future deployed reactors based on other heuristics 
                 and look-ahead predictions. 
 \end{itemize}
+
+The simulators are categorized in Table \ref{tab:sim-deploy}. The reactor deployment scheme in most simulators is either manual or demand-driven, but fuel cycle facilities are 
+
+\begin{table}
+\begin{tabularx}{\textwidth}{l|l|l|X|X}
+        \textbf{Simulator} & \textbf{Institution} & \textbf{Reference} & \textbf{Reactor} & \textbf{Fuel Cycle Facility}\\
+        &&& \textbf{Deployment} & \textbf{Deployment}\\
+        \hline
+        CAFCA & MIT &  \cite{guerin_impact_2009} & manual & manual \\
+        CLASS & CNRS/IRSN & \cite{mouginot_class_2012} & manual & manual \\
+        COSI & CEA & 
+        \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & demand-driven & predictive (look-ahead) \\
+        \Cyclus & UW & \cite{huff_fundamental_2016} & demand-driven & manual \\ 
+        DESAE & Rosatom & \cite{boucher_international_2010} & manual & manual \\
+        DANESS & ANL & \cite{van_den_durpel_daness:_2006} & demand-driven & proportional \\
+        DYMOND & ANL & \cite{park_modeling_2003} & demand-driven & predictive (look-ahead) \\
+        Evolcode & CIEMAT & \cite{boucher_international_2010} & demand-driven & manual \\
+        FAMILY &  IAEA & \cite{boucher_international_2010} & demand-driven & predictive (look-ahead) \\
+        MARKAL & BNL & \cite{feng_standardized_2016} & demand-driven & manual \\
+        NFCSim & LANL & \cite{schneider_nfcsim:_2005} & demand-driven & predictive (look-ahead) \\
+        NGSAM & ORNL & \cite{aubin_development_2013} & none & manual \\
+        NUWASTE & NWTRB & \cite{garrick_nuclear_2011} & manual & manual \\
+        ORION & NNL &\cite{feng_standardized_2016} & demand-driven/constrained & proportional \\
+        VISION & INL & \cite{feng_standardized_2016,boucher_international_2010} & demand-driven & proportional \\
+        VISTA & IAEA & \cite{iaea_nuclear_2007}  & demand-driven & proportional \\
+\end{tabularx}
+        \caption{Simulators, categorized by their reactor and fuel cycle 
+        facility deployment strategies.}
+        \label{tam:sim-deploy}
+\end{table}
 
 Each will be discussed, but the focus of this paper will be to improve on the 
 current state of the art implementations of the fourth category, predictive 
