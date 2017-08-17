@@ -25,7 +25,7 @@
 \documentclass[final]{beamer}
 
 \usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
-
+\usepackage{adjustbox}
 \usetheme{confposter} % Use the confposter theme supplied with this template
 
 \setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
@@ -141,24 +141,22 @@ This statement requires citation \cite{Smith:2012qr}.
 \begin{block}{Methods}
 A meta-review of previous NFC gap analyses helped to identify the high level capabilities of existing simulators. Among these, [1], [2] and [3] compared the capabilities of international NFC simulators via systematic transition scenario benchmarks. In [4] and [5], the ability of individual simulators to conduct transition scenarios is addressed, however the flexibility and performance of their varying facility deployment algorithms are not.
 
-The fuel cycle simulation tools reviewed included:
-\begin{table}[h]
-	\centering
+Current Strategies:
 	
-	\caption {Algorithm Details}
-	\scalebox{.9}{
-		\begin{tabular}{|c|c||}
-			\hline
-			CAFCA (MIT) [6] &CLASS (CNRS/IRSN) [7] \\ \hline
-			COSI (CEA) [8, 1] & Cyclus (UW) [9] \\ \hline
-			DANESS (ANL) [10] & DESAE (Rosatom) [1] \\ \hline
-			DYMOND (ANL) [1] & Evolcode (CIEMAT) [1] \\ \hline
-			FAMILY (IAEA) [1] & MARKAL (BNL) [11] \\ \hline
-			NFCSim (LANL) [12] & NGSAM (ORNL) [13] \\ \hline
-			NUWASTE (NWTRB) [14] & ORION (NNL) [11] \\ \hline
-			VISION (INL) [11, 1] & VISTA (IAEA) [15] \\ \hline
-		\end{tabular}}
-\end{table}
+	For the majority of simulators, automated deployment is limited to deploying reactors based
+	on changes in power demand. However, supportive fuel cycles must also be deployed in preparation for
+	reactor deployment. Current simulators rely on user-defined deployment. To reduce the effort and
+	the likelihood of a failed simulation, the user often deploys all necessary fuel cycle facilities
+	with excess or infinite throughput capacities.
+	
+	Current strategies can be categorized into four genres:
+	\begin{itemize}
+		\item \textbf{manual:} The user 'guesses' the future required fuel cycle facility deployments needed to support simulated reactors.
+		\item \textbf{proportional:} Deployment of fuel cycle facilities is in direct proportion with reactor deployments (e.g. for every 10 new fast reactors, deploy a new reprocessing plant).
+		\item \textbf{constrained reactor deployment:} Deployment of reactors is constrained by the existing and projected feedstock amounts.
+		\item \textbf{predictive:} The simulator projects the feedstock needs of current and future deployed reactors based on other heuristics and look-ahead predictors.
+	\end{itemize}
+
 		
 \end{block}
 
@@ -174,19 +172,38 @@ The fuel cycle simulation tools reviewed included:
 
 \begin{block}{Current Strategies}
 
-For the majority of simulators, automated deployment is limited to deploying reactors based
-on changes in power demand. However, supportive fuel cycles must also be deployed in preparation for
-reactor deployment. Current simulators rely on user-defined deployment. To reduce the effort and
-the likelihood of a failed simulation, the user often deploys all necessary fuel cycle facilities
-with excess or infinite throughput capacities.
 
-Current strategies can be categorized into four genres:
-\begin{itemize}
-\item \textbf{manual:} The user 'guesses' the future required fuel cycle facility deployments needed to support simulated reactors.
-\item \textbf{proportional:} Deployment of fuel cycle facilities is in direct proportion with reactor deployments (e.g. for every 10 new fast reactors, deploy a new reprocessing plant).
-\item \textbf{constrained reactor deployment:} Deployment of reactors is constrained by the existing and projected feedstock amounts.
-\item \textbf{predictive:} The simulator projects the feedstock needs of current and future deployed reactors based on other heuristics and look-ahead predictors.
-\end{itemize}
+\begin{table}
+	\adjustbox{max height=\textheight,
+		max width=\textwidth}{
+	\begin{tabularx}{\textwidth}{l|l|l|X|X}
+		\textbf{Simulator} & \textbf{Institution} & \textbf{Reference} & \textbf{Reactor} & \textbf{Fuel Cycle Facility}\\
+		&&& \textbf{Deployment} & \textbf{Deployment}\\
+		\hline
+		CAFCA & MIT &  \cite{guerin_impact_2009} & manual & manual \\
+		CLASS & CNRS/IRSN & \cite{mouginot_class_2012} & manual & manual \\
+		COSI & CEA & 
+		\cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & demand-driven & predictive (look-ahead) \\
+		\Cyclus & UW & \cite{huff_fundamental_2016} & demand-driven & manual \\ 
+		DESAE & Rosatom & \cite{boucher_international_2010} & manual & manual \\
+		DANESS & ANL & \cite{van_den_durpel_daness:_2006} & demand-driven & proportional \\
+		DYMOND & ANL & \cite{park_modeling_2003} & demand-driven & predictive (look-ahead) \\
+		Evolcode & CIEMAT & \cite{boucher_international_2010} & demand-driven & manual \\
+		FAMILY &  IAEA & \cite{boucher_international_2010} & demand-driven & predictive (look-ahead) \\
+		MARKAL & BNL & \cite{feng_standardized_2016} & demand-driven & manual \\
+		NFCSim & LANL & \cite{schneider_nfcsim:_2005} & demand-driven & predictive (look-ahead) \\
+		NGSAM & ORNL & \cite{aubin_development_2013} & none & manual \\
+		NUWASTE & NWTRB & \cite{garrick_nuclear_2011} & manual & manual \\
+		ORION & NNL &\cite{feng_standardized_2016} & demand-driven/constrained & proportional \\
+		VISION & INL & \cite{feng_standardized_2016,boucher_international_2010} & demand-driven & proportional \\
+		VISTA & IAEA & \cite{iaea_nuclear_2007}  & demand-driven & proportional \\
+	\end{tabularx}
+}
+	\caption{Simulators, categorized by their reactor and fuel cycle 
+		facility deployment strategies.}
+	\label{tam:sim-deploy}
+
+\end{table}
 
 \end{block}
 
