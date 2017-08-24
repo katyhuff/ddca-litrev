@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Jacobs Landscape Poster
 % LaTeX Template
-% Version 1.0 (29/03/13)
+% Version 1.1 (14/06/14)
 %
 % Created by:
 % Computational Physics and Biophysics Group, Jacobs University
@@ -25,7 +25,7 @@
 \documentclass[final]{beamer}
 
 \usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
-\usepackage{adjustbox}
+
 \usetheme{confposter} % Use the confposter theme supplied with this template
 
 \setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
@@ -56,24 +56,28 @@
 %-----------------------------------------------------------
 
 \usepackage{graphicx}  % Required for including images
+\newcommand{\Cyclus}{\textsc{Cyclus}\xspace}%
 
 \usepackage{tabularx}
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.5\hsize}X}
 \newcolumntype{m}{>{\hsize=.75\hsize}X}
+\newcolumntype{z}{>{\hsize=.65\hsize}X}
 
 \usepackage{booktabs} % Top and bottom rules for tables
+
+
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Current Status of Predictive Transtion Capability in Fuel Cycle Simulation} % Poster title
+\title{Current Status of Predictive Transition Capability in Fuel Cycle Simulation} % Poster title
 
 \author{Kathryn D. Huff, Jin whan bae, Rober R. Flanagan, Anthony M. Scopatz} % Author(s)
 
 \institute{University of Illinios at Urbana-Champaign, Department of Nuclear, Plasma, and Radiological Engineering, Urbana, IL 61801}
-
 %----------------------------------------------------------------------------------------
 
 \begin{document}
@@ -101,9 +105,9 @@
 Identify flexible, general, and performant algorithms available for application to simulating
 demand-driven deployment of nuclear fuel cycle facility capacity in a fuel cycle simulator.
 \begin{itemize}
-\item Review current Nuclear Fuel Cycle simulation tools to determine their current capabilities.
-\item Investigate promising algorithms.
-\item Applications of such algorithms in other domains (economics, industrial engineering).  
+	\item Review current Nuclear Fuel Cycle simulation tools to determine their current capabilities.
+	\item Investigate promising algorithms.
+	\item Applications of such algorithms in other domains (economics, industrial engineering).  
 \end{itemize}
 
 \end{alertblock}
@@ -113,16 +117,12 @@ demand-driven deployment of nuclear fuel cycle facility capacity in a fuel cycle
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Introduction}
+
 Nuclear fuel cycle simulation scenarios may be described as constrained objective functions. The objectives are often systemic demands such as "achieve 1\% growth for total electricity production and reach 10\% uranium utilization." The constraints take the form of nuclear fuel cycle technology availability ("reprocessing begins after 2025 and fast reactors first become available in 2050"). To match the naturally constrained objective form of the scenario definition, NFC simulators must bring demand responsive deployment decisions into the dynamics of the simulation logic.
 In particular, a NFC simulator should have the capability to deploy supporting fuel cycle facilities which enable a demand to be met. Take, for instance, the standard once through fuel cycle. Reactors may be deployed to meet an objective power demand. However, new mines, mills, and enrichment facilities will also need to be deployed to ensure that reactors have sufficient fuel to produce power. In many simulators, the unrealistic solution to this problem is to simply have infinite capacity support facilities. Alternatively, detailing the deployment timeline of all facilities becomes the responsibility of the user.
 This statement requires citation \cite{Smith:2012qr}.
 
 \end{block}
-
-%------------------------------------------------
-
-
-%----------------------------------------------------------------------------------------
 
 \end{column} % End of the first column
 
@@ -139,25 +139,14 @@ This statement requires citation \cite{Smith:2012qr}.
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Methods}
-A meta-review of previous NFC gap analyses helped to identify the high level capabilities of existing simulators. Among these, [1], [2] and [3] compared the capabilities of international NFC simulators via systematic transition scenario benchmarks. In [4] and [5], the ability of individual simulators to conduct transition scenarios is addressed, however the flexibility and performance of their varying facility deployment algorithms are not.
-
-Current Strategies:
+	A meta-review of previous \gls{NFC} gap analyses helped to identify the existingn
+	simulators and their capabilities. The strongest comparison of transitoin scenario
+	code capabilities is found in \cite{boucher_international_2010}, \cite{brown_identification_2016} and \cite{mccarthy_benchmark_2012}.
+	In \cite{carre_overview_2009} and \cite{hoffman_expanded_2016}, the ability of
+	individual simulators to conduct transition scenarios is addressed, but not the
+	flexibility and performance of their varying algorithms for this capability.
 	
-	For the majority of simulators, automated deployment is limited to deploying reactors based
-	on changes in power demand. However, supportive fuel cycles must also be deployed in preparation for
-	reactor deployment. Current simulators rely on user-defined deployment. To reduce the effort and
-	the likelihood of a failed simulation, the user often deploys all necessary fuel cycle facilities
-	with excess or infinite throughput capacities.
-	
-	Current strategies can be categorized into four genres:
-	\begin{itemize}
-		\item \textbf{manual:} The user 'guesses' the future required fuel cycle facility deployments needed to support simulated reactors.
-		\item \textbf{proportional:} Deployment of fuel cycle facilities is in direct proportion with reactor deployments (e.g. for every 10 new fast reactors, deploy a new reprocessing plant).
-		\item \textbf{constrained reactor deployment:} Deployment of reactors is constrained by the existing and projected feedstock amounts.
-		\item \textbf{predictive:} The simulator projects the feedstock needs of current and future deployed reactors based on other heuristics and look-ahead predictors.
-	\end{itemize}
 
-		
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -170,41 +159,14 @@ Current Strategies:
 %	METHODS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Current Strategies}
-
-
-\begin{table}
-	\adjustbox{max height=\textheight,
-		max width=\textwidth}{
-	\begin{tabularx}{\textwidth}{l|l|l|X|X}
-		\textbf{Simulator} & \textbf{Institution} & \textbf{Reference} & \textbf{Reactor} & \textbf{Fuel Cycle Facility}\\
-		&&& \textbf{Deployment} & \textbf{Deployment}\\
-		\hline
-		CAFCA & MIT &  \cite{guerin_impact_2009} & manual & manual \\
-		CLASS & CNRS/IRSN & \cite{mouginot_class_2012} & manual & manual \\
-		COSI & CEA & 
-		\cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & demand-driven & predictive (look-ahead) \\
-		\Cyclus & UW & \cite{huff_fundamental_2016} & demand-driven & manual \\ 
-		DESAE & Rosatom & \cite{boucher_international_2010} & manual & manual \\
-		DANESS & ANL & \cite{van_den_durpel_daness:_2006} & demand-driven & proportional \\
-		DYMOND & ANL & \cite{park_modeling_2003} & demand-driven & predictive (look-ahead) \\
-		Evolcode & CIEMAT & \cite{boucher_international_2010} & demand-driven & manual \\
-		FAMILY &  IAEA & \cite{boucher_international_2010} & demand-driven & predictive (look-ahead) \\
-		MARKAL & BNL & \cite{feng_standardized_2016} & demand-driven & manual \\
-		NFCSim & LANL & \cite{schneider_nfcsim:_2005} & demand-driven & predictive (look-ahead) \\
-		NGSAM & ORNL & \cite{aubin_development_2013} & none & manual \\
-		NUWASTE & NWTRB & \cite{garrick_nuclear_2011} & manual & manual \\
-		ORION & NNL &\cite{feng_standardized_2016} & demand-driven/constrained & proportional \\
-		VISION & INL & \cite{feng_standardized_2016,boucher_international_2010} & demand-driven & proportional \\
-		VISTA & IAEA & \cite{iaea_nuclear_2007}  & demand-driven & proportional \\
-	\end{tabularx}
-}
-	\caption{Simulators, categorized by their reactor and fuel cycle 
-		facility deployment strategies.}
-	\label{tam:sim-deploy}
-
-\end{table}
-
+\begin{block}{Successful Applications}
+	
+	The concept of dynamic demand-driven deployment has been used 
+	for lumber mills \cite{yanex_agent-based_2009}, coupling building efficiency with weather \cite{gonzalez_detailed_2002, kusiak_data-driven_2010},
+	and in the airline industry \cite{shebalov_practical_2009}.
+	The success of these algorithms in other domains for similar classes 
+	of problems is promising for their potential in nuclear fuel cycle analysis.
+	
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -217,8 +179,6 @@ Current Strategies:
 %	IMPORTANT RESULT
 %----------------------------------------------------------------------------------------
 
-%\begin{alertblock}{Important Result}
-%\end{alertblock} 
 %----------------------------------------------------------------------------------------
 
 \begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
@@ -229,27 +189,47 @@ Current Strategies:
 %	MATHEMATICAL SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Promising Algorithms}
-\begin{table}[h]
-	\centering
-	\caption {Algorithm Details}
-		\begin{tabularx}{\textwidth}{sbm}
-			\hline
-			Branch & Trait & Examples \\ \hline
-			Non-Optimizing (NO) & predict based on historical supply-demand data \newline
-								  do not attempt to meet demand optimally \newline
-								  fast execution time with limited precision.
-								   &  Autoregressive Moving Average (ARMA) \newline Autoregressive conditional heteroskedastic (ARCH)   \\ \hline
-			Deterministic-Optimizing(DO)) & Minimize or maximize an objective function with set of constraints \newline
-											replicable &  Global Change Assessment Model (GCAM) \newline
-														  MARKet and ALlocation (MARKAL) model   \\ \hline
-			Stochastic-Optimizing(SO) & probabilistic search into the objective function or constraint \newline
-									    models uncertainty in addition to mean \newline
-									    uses random samples from probability distributions  & Markov Switching Model \newline
-																						      Gaussian Process Regression   \\ \hline
+\begin{block}{Current Strategies}
+	
+	\begin{itemize}
+		\item \textbf{manual (M):} The user 'guesses' future deployment of reactor and facility.
+		\item \textbf{proportional (PROP):} Deployment of fuel cycle facilities is in 
+		direct proportion with reactor deployments .
+		\item \textbf{constrained reactor deployment (CONST):} Deployment of reactors is 
+		constrained by the existing and projected feedstock amounts.
+		\item \textbf{predictive (PRED):} The simulator projects feedstock needs of 
+		current and future deployed reactors based on other heuristics 
+		and look-ahead predictions. 
+	\end{itemize}
+	
+	\begin{table}
+		\centering
+		\begin{tabularx}{\textwidth}{mmss}
+			\hline 
+			\textbf{Simulator} & \textbf{Institution} & \textbf{Reactor} & \textbf{Facility}\\ \hline
+			CAFCA \cite{guerin_impact_2009} & MIT    & M & M \\
+			CLASS \cite{mouginot_class_2012} & CNRS/IRSN & M & M \\
+			COSI \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & CEA & 
+			D-D & PRED \\
+			\Cyclus \cite{huff_fundamental_2016} & UW &  D-D & M \\ 
+			DESAE \cite{boucher_international_2010}& Rosatom &  M & M \\
+			DANESS \cite{van_den_durpel_daness:_2006} & ANL & D-D & PROP \\
+			DYMOND \cite{park_modeling_2003}& ANL &  D-D & PRED \\
+			Evolcode\cite{boucher_international_2010} & CIEMAT & D-D & M\\
+			FAMILY \cite{boucher_international_2010}&  IAEA &  D-D & PRED \\
+			MARKAL \cite{feng_standardized_2016}& BNL &  D-D & M\\
+			NFCSim \cite{schneider_nfcsim:_2005}& LANL &  D-D & PRED \\
+			NGSAM \cite{aubin_development_2013} & ORNL & NONE & M \\
+			{\small NUWASTE \cite{garrick_nuclear_2011}}& NWTRB &  M & M \\
+			ORION \cite{feng_standardized_2016} & NNL & CONST  & PROP\\
+			VISION \cite{feng_standardized_2016,boucher_international_2010}& INL  & D-D & PROP \\
+			VISTA \cite{iaea_nuclear_2007}& IAEA & D-D & PROP \\ \hline
 		\end{tabularx}
-\end{table}
-
+		\caption{Simulators, categorized by their reactor and fuel cycle 
+			facility deployment strategies.}
+		\label{tam:sim-deploy}
+	\end{table}
+	
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -262,17 +242,34 @@ Current Strategies:
 %	RESULTS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Successful Applications}
-The concept of dynamic demand-driven deployment has been used in myriad domains, 
-from lumber mills [28] to coupling building efficiency with weather [29, 30].  
-To maximize fleet utilization and minimize operating costs, airlines predict future 
-demands and optimize their flight schedules and aircraft types using In the airline industry, 
-linear programming methods are used [31] including a linear optimization method called 
-"Demand Driven Dispatch" [32], a type of deterministic optimization method.
-The success of these algorithms in other domains for similar classes 
-of problems is promising for their potential in nuclear fuel cycle analysis.
+\begin{block}{Promising Algorithms}
+
+\begin{itemize}
+	\item Non-Optimizing (NO)
+	\begin{itemize}
+		\item Predict based on historical supply-demand data
+		\item Does not attempt to meet demand optimally
+		\item Fast execution time with limited precision
+		\item ex) Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)
+	\end{itemize}
+	\item Deterministic Optimizing (DO)
+	\begin{itemize}
+		\item Minimize or Maximize an objective function with set of constraints
+		\item Replicable
+		\item ex) Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)
+	\end{itemize}
+	\item Stochastic Optimizing (SO)
+	\begin{itemize}
+		\item Probabilistic search into the objective function or constraint models
+		\item Uncertainty in addition to mean
+		\item Uses random samples from probability distributions
+		\item ex) Markov Switching-Model, Gaussian Process Regression
+	\end{itemize}
+\end{itemize}
 
 \end{block}
+
+
 
 %----------------------------------------------------------------------------------------
 
@@ -303,40 +300,25 @@ Among these, characteristic performance was addressed (in terms of both compute
 speed and human effort), flexibility (in terms of the range of scenarios capably
 simulated), and robustness (in terms of consistent fidelity of the modeling results).
 Finally, current NFC simulators may more flexibly support demand-driven deployment
-through incorporation of non-optimizing algorithms such as ARMA [33] and ARCH [34],
-deterministically optimizing methods such as those collected in GCAM [18] and
-MARKAL [19], or stochastic optimization techniques such as Markov Switching Models [35].
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	ADDITIONAL INFORMATION
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Acknowledgement}
-This research is being performed using funding received
-from the DOE Office of Nuclear Energy's Nuclear Energy
-University Programs under award number 16-10512.
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	REFERENCES
-%----------------------------------------------------------------------------------------
-
-\begin{block}{References}
-
+through incorporation of non-optimizing algorithms such as ARMA \cite{woodard_stationarity_2011} and ARCH \cite{li_kernal_2016},
+deterministically optimizing methods such as those collected in GCAM \cite{edmonds_advanced_1994} and
+MARKAL \cite{fishbone_markal_1981}, or stochastic optimization techniques such as Markov Switching Models \cite{ansari_predicting_2015}.
 \end{block}
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 
-%\setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
+\setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
 
-%\begin{block}{Acknowledgements}
+\begin{block}{Acknowledgements}
 
-%\small{\rmfamily{Nam mollis tristique neque eu luctus. Suspendisse rutrum congue nisi sed convallis. Aenean id neque dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.}} \\
+This research is being performed using funding received
+from the DOE Office of Nuclear Energy's Nuclear Energy
+University Programs under award number 16-10512.
 
-%\end{block}
+\end{block}
+
 
 %----------------------------------------------------------------------------------------
 %	CONTACT INFORMATION
@@ -348,13 +330,19 @@ University Programs under award number 16-10512.
 \begin{alertblock}{Contact Information}
 
 \begin{itemize}
-\item Web: \href{arfc.github.io}{arfc.github.io}
-\item Email: \href{mailto:jbae11@illinois.edu}{jbae11@illinois.edu}
-\item Phone: +1 (217) 377-5784
+	
+	\item Web: \href{arfc.github.io}{arfc.github.io}
+	\item Email: \href{mailto:jbae11@illinois.edu}{jbae11@illinois.edu}
+	\item Phone: +1 (217) 377-5784
 \end{itemize}
 
 \end{alertblock}
 
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.4\linewidth]{logo.png} & \hfill & \includegraphics[width=0.4\linewidth]{neup.png}
+\end{tabular}
+\end{center}
 
 %----------------------------------------------------------------------------------------
 
