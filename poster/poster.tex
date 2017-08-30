@@ -67,6 +67,23 @@
 \usepackage{booktabs} % Top and bottom rules for tables
 
 
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, decorations, shapes }
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+
+\tikzstyle{block} = [rectangle, draw, text centered, fill=blue!20]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=6em,
+minimum height=2em]
+
+
+
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
 
 
 %----------------------------------------------------------------------------------------
@@ -118,9 +135,53 @@ demand-driven deployment of nuclear fuel cycle facility capacity in a fuel cycle
 
 \begin{block}{Introduction}
 
-Nuclear fuel cycle simulation scenarios may be described as constrained objective functions. The objectives are often systemic demands such as "achieve 1\% growth for total electricity production and reach 10\% uranium utilization." The constraints take the form of nuclear fuel cycle technology availability ("reprocessing begins after 2025 and fast reactors first become available in 2050"). To match the naturally constrained objective form of the scenario definition, NFC simulators must bring demand responsive deployment decisions into the dynamics of the simulation logic.
-In particular, a NFC simulator should have the capability to deploy supporting fuel cycle facilities which enable a demand to be met. Take, for instance, the standard once through fuel cycle. Reactors may be deployed to meet an objective power demand. However, new mines, mills, and enrichment facilities will also need to be deployed to ensure that reactors have sufficient fuel to produce power. In many simulators, the unrealistic solution to this problem is to simply have infinite capacity support facilities. Alternatively, detailing the deployment timeline of all facilities becomes the responsibility of the user.
-This statement requires citation \cite{Smith:2012qr}.
+\begin{figure}
+	\centering
+	\scalebox{0.8}{
+		\begin{tikzpicture}[    >=stealth,
+		node distance=6cm,
+		on grid,
+		align=center,
+		auto]
+		% Place nodes
+		\node [block] (of) {\textbf{NFC Simulation = Objective Functions}};
+		\node [cloud, below of=of] (dem) {\texttt{DEMAND} \\ ex) Achieve 1\% growth for total electricity};
+		\node [cloud, below of=dem] (con) {\texttt{CONSTRAINT} \\ex) Reprocessing available from 2025 };
+		
+		\draw[->, thick] (of) -- (dem);
+		\draw[->, thick] (dem) -- (con);
+		
+		\end{tikzpicture}
+		
+	}
+\end{figure}
+Need for : \\ Demand Repsonsive Deployment Decisions
+\begin{figure}
+	\centering
+	\scalebox{0.70}{
+		\begin{tikzpicture}[    >=stealth,
+		node distance=3cm,
+		on grid,
+		align=center,
+		auto]
+		% Place nodes
+		\node [block] (rea) {{\LARGE \texttt{Reactor}}};
+		\node [cloud, below of=rea] (d1) {1. Demand: \mathbf{Fuel}};
+		\node [cloud, below of=d1] (s1) {2. Deploy \texttt{Enrichment} Facility to meet fuel demand};
+		\node [cloud, below of=s1] (ff) {3. Deploy \texttt{Mills} to meet UF6 demand};
+		\node [cloud, below of=ff] (d2) {4. Deploy \texttt{Mines} to meet uranium demand};
+		
+		
+		\draw[->, thick] (rea) -- (d1);
+		\draw[->, thick] (d1) -- (s1);
+		\draw[->, thick] (s1) -- (ff);
+		\draw[->, thick] (ff) -- (d2);
+		\end{tikzpicture}
+		
+	}
+	\caption{Dynamic Deployment to meet fuel demand}
+\end{figure}
+
 
 \end{block}
 
@@ -160,13 +221,15 @@ This statement requires citation \cite{Smith:2012qr}.
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Successful Applications}
-	
-	The concept of dynamic demand-driven deployment has been used 
-	for lumber mills \cite{yanex_agent-based_2009}, coupling building efficiency with weather \cite{gonzalez_detailed_2002, kusiak_data-driven_2010},
-	and in the airline industry \cite{shebalov_practical_2009}.
-	The success of these algorithms in other domains for similar classes 
-	of problems is promising for their potential in nuclear fuel cycle analysis.
-	
+{\large 	\begin{itemize}
+		\item Lumber mills \cite{yanex_agent-based_2009}
+		\item coupling building efficiency with weather \cite{gonzalez_detailed_2002, kusiak_data-driven_2010}
+		\item airline industry \cite{shebalov_practical_2009}
+	\end{itemize}
+	}
+The success of these algorithms in other domains for similar classes 
+of problems is promising for their potential in nuclear fuel cycle analysis.
+
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -243,29 +306,33 @@ This statement requires citation \cite{Smith:2012qr}.
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Promising Algorithms}
-
-\begin{itemize}
-	\item Non-Optimizing (NO)
+ \begin{itemize}
+ 	\setlength\itemsep{1.5em}
+	\item \textbf{{\Large Non-Optimizing (NO)}}
 	\begin{itemize}
-		\item Predict based on historical supply-demand data
-		\item Does not attempt to meet demand optimally
-		\item Fast execution time with limited precision
-		\item ex) Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)
+		\setlength\itemsep{1em}
+		\item {\large Predict based on historical supply-demand data}
+		\item{\large  Does not attempt to meet demand optimally}
+		\item {\large Fast execution time with limited precision}
+		\item {\large ex) Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)}
 	\end{itemize}
-	\item Deterministic Optimizing (DO)
+	\item \textbf{{\Large Deterministic Optimizing (DO)}}
 	\begin{itemize}
-		\item Minimize or Maximize an objective function with set of constraints
-		\item Replicable
-		\item ex) Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)
+		\setlength\itemsep{1em}
+		\item{\large  Minimize or Maximize an objective function with set of constraints}
+		\item {\large Replicable}
+		\item{\large  ex) Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)}
 	\end{itemize}
-	\item Stochastic Optimizing (SO)
+	\item \textbf{{\Large Stochastic Optimizing (SO)}}
 	\begin{itemize}
-		\item Probabilistic search into the objective function or constraint models
-		\item Uncertainty in addition to mean
-		\item Uses random samples from probability distributions
-		\item ex) Markov Switching-Model, Gaussian Process Regression
+		\setlength\itemsep{1em}
+		\item {\large Probabilistic search into the objective function or constraint models}
+		\item {\large Uncertainty in addition to mean}
+		\item {\large Uses random samples from probability distributions}
+		\item {\large ex) Markov Switching-Model, Gaussian Process Regression}
 	\end{itemize}
 \end{itemize}
+
 
 \end{block}
 
