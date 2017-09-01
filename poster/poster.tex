@@ -150,8 +150,8 @@ demand-driven deployment of nuclear fuel cycle facility capacity in a fuel cycle
 		auto]
 		% Place nodes
 		\node [block] (of) {\textbf{NFC Simulation = Objective Functions}};
-		\node [cloud, below of=of] (dem) {\texttt{DEMAND} \\ ex) Achieve 1\% growth for total electricity};
-		\node [cloud, below of=dem] (con) {\texttt{CONSTRAINT} \\ex) Reprocessing available from 2025 };
+		\node [cloud, below of=of] (dem) {\texttt{DEMAND} \\ E.g. Achieve 1\% growth for total electricity};
+		\node [cloud, below of=dem] (con) {\texttt{CONSTRAINT} \\E.g. Reprocessing available from 2025 };
 		
 		\draw[->, thick] (of) -- (dem);
 		\draw[->, thick] (dem) -- (con);
@@ -319,14 +319,14 @@ of problems is promising for their potential in nuclear fuel cycle analysis.
 		\item {\large Predict based on historical supply-demand data}
 		\item{\large  Does not attempt to meet demand optimally}
 		\item {\large Fast execution time with limited precision}
-		\item {\large ex) Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)}
+		\item {\large E.g. Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)}
 	\end{itemize}
 	\item \textbf{{\Large Deterministic Optimizing (DO)}}
 	\begin{itemize}
 		\setlength\itemsep{1em}
 		\item{\large  Minimize or Maximize an objective function with set of constraints}
 		\item {\large Replicable}
-		\item{\large  ex) Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)}
+		\item{\large  E.g. Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)}
 	\end{itemize}
 	\item \textbf{{\Large Stochastic Optimizing (SO)}}
 	\begin{itemize}
@@ -334,7 +334,7 @@ of problems is promising for their potential in nuclear fuel cycle analysis.
 		\item {\large Probabilistic search into the objective function or constraint models}
 		\item {\large Uncertainty in addition to mean}
 		\item {\large Uses random samples from probability distributions}
-		\item {\large ex) Markov Switching-Model, Gaussian Process Regression}
+		\item {\large E.g. Markov Switching-Model, Gaussian Process Regression}
 	\end{itemize}
 \end{itemize}
 
