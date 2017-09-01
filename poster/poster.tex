@@ -25,7 +25,6 @@
 \documentclass[final]{beamer}
 
 \usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
-
 \usetheme{confposter} % Use the confposter theme supplied with this template
 
 \setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
@@ -205,9 +204,9 @@ Need for : \\ Demand Repsonsive Deployment Decisions
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Methods}
-	A meta-review of previous \gls{NFC} gap analyses helped to identify the existing
+	A meta-review of previous Nuclear Fuel Cycle gap analyses helped to identify the existing
 	simulators and their capabilities. The strongest comparisons of transition scenario
-	code capabilities is found in \cite{boucher_international_2010}, \cite{brown_identification_2016} and \cite{mccarthy_benchmark_2012}.
+	code capabilities are found in \cite{boucher_international_2010}, \cite{brown_identification_2016} and \cite{mccarthy_benchmark_2012}.
 	In \cite{carre_overview_2009} and \cite{hoffman_expanded_2016}, the ability of
 	individual simulators to conduct transition scenarios is addressed, but not the
 	flexibility and performance of their varying algorithms for this capability.
@@ -228,13 +227,12 @@ Need for : \\ Demand Repsonsive Deployment Decisions
 \begin{block}{Successful Applications}
 {\large 	\begin{itemize}
 		\item Lumber mills \cite{yanex_agent-based_2009}
-		\item coupling building efficiency with weather \cite{gonzalez_detailed_2002, kusiak_data-driven_2010}
-		\item airline industry \cite{shebalov_practical_2009}
+		\item weather-responsive building efficiency \cite{gonzalez_detailed_2002, kusiak_data-driven_2010}
+		\item airline routing logistics \cite{shebalov_practical_2009}
 	\end{itemize}
 	}
-The success of these algorithms in other domains for similar classes 
-of problems is promising for their potential in nuclear fuel cycle analysis.
-
+These algorithms have succeeded in other domains for similar classes of problems.
+Accordingly, their potential in nuclear fuel cycle analysis ins promising.
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -260,7 +258,7 @@ of problems is promising for their potential in nuclear fuel cycle analysis.
 \begin{block}{Current Strategies}
 	
 	\begin{itemize}
-		\item \textbf{manual (M):} The user 'guesses' future deployment of reactor and facility.
+		\item \textbf{manual (MAN):} The user `guesses' future deployment of reactor and facility.
 		\item \textbf{proportional (PROP):} Deployment of fuel cycle facilities is in 
 		direct proportion with reactor deployments .
 		\item \textbf{constrained reactor deployment (CONST):} Deployment of reactors is 
@@ -268,31 +266,34 @@ of problems is promising for their potential in nuclear fuel cycle analysis.
 		\item \textbf{predictive (PRED):} The simulator projects feedstock needs of 
 		current and future deployed reactors based on other heuristics 
 		and look-ahead predictions. 
+		\item \textbf{Demand-Driven (D-D):} The simulator deploys facilities according
+		to demand
 	\end{itemize}
-	
+
 	\begin{table}
 		\centering
+		\scalebox{.85}{
 		\begin{tabularx}{\textwidth}{mmss}
 			\hline 
 			\textbf{Simulator} & \textbf{Institution} & \textbf{Reactor} & \textbf{Facility}\\ \hline
-			CAFCA \cite{guerin_impact_2009} & MIT    & M & M \\
-			CLASS \cite{mouginot_class_2012} & CNRS/IRSN & M & M \\
+			CAFCA \cite{guerin_impact_2009} & MIT    & MAN & MAN \\
+			CLASS \cite{mouginot_class_2012} & CNRS/IRSN & MAN & MAN \\
 			COSI \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & CEA & 
 			D-D & PRED \\
-			\Cyclus \cite{huff_fundamental_2016} & UW &  D-D & M \\ 
-			DESAE \cite{boucher_international_2010}& Rosatom &  M & M \\
+			\Cyclus \cite{huff_fundamental_2016} & UW &  D-D & MAN \\ 
+			DESAE \cite{boucher_international_2010}& Rosatom &  MAN & MAN \\
 			DANESS \cite{van_den_durpel_daness:_2006} & ANL & D-D & PROP \\
 			DYMOND \cite{park_modeling_2003}& ANL &  D-D & PRED \\
-			Evolcode\cite{boucher_international_2010} & CIEMAT & D-D & M\\
+			Evolcode\cite{boucher_international_2010} & CIEMAT & D-D & MAN\\
 			FAMILY \cite{boucher_international_2010}&  IAEA &  D-D & PRED \\
-			MARKAL \cite{feng_standardized_2016}& BNL &  D-D & M\\
+			MARKAL \cite{feng_standardized_2016}& BNL &  D-D & MAN\\
 			NFCSim \cite{schneider_nfcsim:_2005}& LANL &  D-D & PRED \\
-			NGSAM \cite{aubin_development_2013} & ORNL & NONE & M \\
-			{\small NUWASTE \cite{garrick_nuclear_2011}}& NWTRB &  M & M \\
+			NGSAM \cite{aubin_development_2013} & ORNL & NONE & MAN \\
+			{\small NUWASTE \cite{garrick_nuclear_2011}}& NWTRB &  MAN & MAN \\
 			ORION \cite{feng_standardized_2016} & NNL & CONST  & PROP\\
 			VISION \cite{feng_standardized_2016,boucher_international_2010}& INL  & D-D & PROP \\
 			VISTA \cite{iaea_nuclear_2007}& IAEA & D-D & PROP \\ \hline
-		\end{tabularx}
+		\end{tabularx}}
 		\caption{Simulators, categorized by their reactor and fuel cycle 
 			facility deployment strategies.}
 		\label{tam:sim-deploy}
@@ -363,7 +364,7 @@ of problems is promising for their potential in nuclear fuel cycle analysis.
 The review concludes that fuel cycle simulation tools approach scenario objective 
 functions in various ways.
 \begin{itemize}
-	\item wrap in external optimizer
+	\item wrapping in external optimizer
 	\item look-ahead methods to predict input validity
 \end{itemize} 
 These methods fail to realistically model the process by which utilities, governments,
@@ -386,7 +387,7 @@ MARKAL \cite{fishbone_markal_1981}, or stochastic optimization techniques such a
 
 \begin{block}{Acknowledgements}
 
-This research is being performed using funding received
+This research was performed using funding received
 from the DOE Office of Nuclear Energy's Nuclear Energy
 University Programs under award number 16-10512.
 
@@ -413,7 +414,7 @@ University Programs under award number 16-10512.
 
 \begin{center}
 \begin{tabular}{ccc}
-\includegraphics[width=0.4\linewidth]{logo.png} & \hfill & \includegraphics[width=0.4\linewidth]{neup.png}
+\includegraphics[width=0.3\linewidth]{logo.png} & \includegraphics[width=0.3\linewidth]{ergs_logo.png} & \includegraphics[width=0.3\linewidth]{neup.png}
 \end{tabular}
 \end{center}
 
