@@ -1,0 +1,429 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Jacobs Landscape Poster
+% LaTeX Template
+% Version 1.1 (14/06/14)
+%
+% Created by:
+% Computational Physics and Biophysics Group, Jacobs University
+% https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
+% 
+% Further modified by:
+% Nathaniel Johnston (nathaniel@njohnston.ca)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[final]{beamer}
+
+\usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
+\usetheme{confposter} % Use the confposter theme supplied with this template
+
+\setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
+\setbeamercolor{block body}{fg=black,bg=white} % Colors of the body of blocks
+\setbeamercolor{block alerted title}{fg=white,bg=dblue!70} % Colors of the highlighted block titles
+\setbeamercolor{block alerted body}{fg=black,bg=dblue!10} % Colors of the body of highlighted blocks
+% Many more colors are available for use in beamerthemeconfposter.sty
+
+%-----------------------------------------------------------
+% Define the column widths and overall poster size
+% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns you want and how much separation you want between columns
+% In this template, the separation width chosen is 0.024 of the paper width and a 4-column layout
+% onecolwid should therefore be (1-(# of columns+1)*sepwid)/# of columns e.g. (1-(4+1)*0.024)/4 = 0.22
+% Set twocolwid to be (2*onecolwid)+sepwid = 0.464
+% Set threecolwid to be (3*onecolwid)+2*sepwid = 0.708
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+\setlength{\paperwidth}{48in} % A0 width: 46.8in
+\setlength{\paperheight}{36in} % A0 height: 33.1in
+\setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.22\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.464\paperwidth} % Width of two columns
+\setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
+\setlength{\topmargin}{-0.5in} % Reduce the top margin size
+%-----------------------------------------------------------
+
+\usepackage{graphicx}  % Required for including images
+\newcommand{\Cyclus}{\textsc{Cyclus}\xspace}%
+
+\usepackage{tabularx}
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.5\hsize}X}
+\newcolumntype{m}{>{\hsize=.75\hsize}X}
+\newcolumntype{z}{>{\hsize=.65\hsize}X}
+
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{xspace}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, decorations, shapes }
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+
+\tikzstyle{block} = [rectangle, draw, text centered, fill=blue!20]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=6em,
+minimum height=2em]
+
+
+
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
+
+\setbeamertemplate{bibliography item}[text]
+
+\bibliographystyle{abbrv}
+\bibliography{poster}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+
+\title{Current Status of Predictive Transition Capability in Fuel Cycle Simulation} % Poster title
+
+\author{Kathryn D. Huff$^1$, Jin whan bae$^1$, Robert R. Flanagan$^2$, Anthony M. Scopatz$^2$}
+\institute{$^1$University of Illinios at Urbana-Champaign, Department of Nuclear, Plasma, and Radiological Engineering, Urbana, IL 61801\\
+	$^2$University of South Carolina, Nuclear Engineering Program, Department of Mechanical Engineering, Columbia, SC 29208}
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\addtobeamertemplate{block end}{}{\vspace*{2ex}} % White space under blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{2ex}} % White space under highlighted (alert) blocks
+
+\setlength{\belowcaptionskip}{2ex} % White space under figures
+\setlength\belowdisplayshortskip{2ex} % White space under equations
+
+\begin{frame}[t] % The whole poster is enclosed in one beamer frame
+
+\begin{columns}[t] % The whole poster consists of three major columns, the second of which is split into two columns twice - the [t] option aligns each column's content to the top
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The first column
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\begin{alertblock}{Objectives}
+
+Identify flexible, general, and performant algorithms available for application to simulating
+demand-driven deployment of nuclear fuel cycle facility capacity in a fuel cycle simulator.
+\begin{itemize}
+	\item Review current Nuclear Fuel Cycle simulation tools to determine their current capabilities.
+	\item Investigate promising algorithms.
+	\item Applications of such algorithms in other domains (economics, industrial engineering).  
+\end{itemize}
+
+\end{alertblock}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Introduction}
+
+\begin{figure}
+	\centering
+	\scalebox{0.8}{
+		\begin{tikzpicture}[    >=stealth,
+		node distance=6cm,
+		on grid,
+		align=center,
+		auto]
+		% Place nodes
+		\node [block] (of) {\textbf{NFC Simulation = Objective Functions}};
+		\node [cloud, below of=of] (dem) {\texttt{DEMAND} \\ E.g. Achieve 1\% growth for total electricity};
+		\node [cloud, below of=dem] (con) {\texttt{CONSTRAINT} \\E.g. Reprocessing available from 2025 };
+		
+		\draw[->, thick] (of) -- (dem);
+		\draw[->, thick] (dem) -- (con);
+		
+		\end{tikzpicture}
+		
+	}
+\end{figure}
+Need for : \\ Demand Repsonsive Deployment Decisions
+\begin{figure}
+	\centering
+	\scalebox{0.80}{
+		\begin{tikzpicture}[    >=stealth,
+		node distance=3cm,
+		on grid,
+		align=center,
+		auto]
+		% Place nodes
+		\node [block] (rea) {{\LARGE \texttt{Reactor}}};
+		\node [cloud, below of=rea] (d1) {1. Demand: \textbf{Fuel}};
+		\node [cloud, below of=d1] (s1) {2. Deploy \texttt{Enrichment} Facility \\ to meet fuel demand};
+		\node [cloud, below of=s1] (ff) {3. Deploy \texttt{Mills} to meet UF6 demand};
+		\node [cloud, below of=ff] (d2) {4. Deploy \texttt{Mines} to meet uranium demand};
+		
+		
+		\draw[->, thick] (rea) -- (d1);
+		\draw[->, thick] (d1) -- (s1);
+		\draw[->, thick] (s1) -- (ff);
+		\draw[->, thick] (ff) -- (d2);
+		\end{tikzpicture}
+		
+	}
+	\caption{Dynamic Deployment to meet fuel demand}
+\end{figure}
+
+
+\end{block}
+
+\end{column} % End of the first column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
+
+\begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
+
+%----------------------------------------------------------------------------------------
+%	MATERIALS
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Methods}
+	A meta-review of previous Nuclear Fuel Cycle gap analyses helped to identify the existing
+	simulators and their capabilities. The strongest comparisons of transition scenario
+	code capabilities are found in \cite{boucher_international_2010}, \cite{brown_identification_2016} and \cite{mccarthy_benchmark_2012}.
+	In \cite{carre_overview_2009} and \cite{hoffman_expanded_2016}, the ability of
+	individual simulators to conduct transition scenarios is addressed, but not the
+	flexibility and performance of their varying algorithms for this capability.
+	
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.1
+
+\begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
+
+%----------------------------------------------------------------------------------------
+%	METHODS
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Successful Applications}
+{\large 	\begin{itemize}
+		\item Lumber mills \cite{yanex_agent-based_2009}
+		\item weather-responsive building efficiency \cite{gonzalez_detailed_2002, kusiak_data-driven_2010}
+		\item airline routing logistics \cite{shebalov_practical_2009}
+	\end{itemize}
+	}
+These algorithms have succeeded in other domains for similar classes of problems.
+Accordingly, their potential in nuclear fuel cycle analysis ins promising.
+\end{block}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
+
+%----------------------------------------------------------------------------------------
+%	IMPORTANT RESULT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
+
+\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
+
+%----------------------------------------------------------------------------------------
+%	MATHEMATICAL SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Current Strategies}
+	
+	\begin{itemize}
+		\item \textbf{manual (MAN):} The user `guesses' future deployment of reactor and facility.
+		\item \textbf{proportional (PROP):} Deployment of fuel cycle facilities is in 
+		direct proportion with reactor deployments .
+		\item \textbf{constrained reactor deployment (CONST):} Deployment of reactors is 
+		constrained by the existing and projected feedstock amounts.
+		\item \textbf{predictive (PRED):} The simulator projects feedstock needs of 
+		current and future deployed reactors based on other heuristics 
+		and look-ahead predictions. 
+		\item \textbf{Demand-Driven (D-D):} The simulator deploys facilities according
+		to demand
+	\end{itemize}
+
+	\begin{table}
+		\centering
+		\scalebox{.85}{
+		\begin{tabularx}{\textwidth}{mmss}
+			\hline 
+			\textbf{Simulator} & \textbf{Institution} & \textbf{Reactor} & \textbf{Facility}\\ \hline
+			CAFCA \cite{guerin_impact_2009} & MIT    & MAN & MAN \\
+			CLASS \cite{mouginot_class_2012} & CNRS/IRSN & MAN & MAN \\
+			COSI \cite{coquelet-pascal_cosi6:_2015,boucher_international_2010} & CEA & 
+			D-D & PRED \\
+			\Cyclus \cite{huff_fundamental_2016} & UW &  D-D & MAN \\ 
+			DESAE \cite{boucher_international_2010}& Rosatom &  MAN & MAN \\
+			DANESS \cite{van_den_durpel_daness:_2006} & ANL & D-D & PROP \\
+			DYMOND \cite{park_modeling_2003}& ANL &  D-D & PRED \\
+			Evolcode\cite{boucher_international_2010} & CIEMAT & D-D & MAN\\
+			FAMILY \cite{boucher_international_2010}&  IAEA &  D-D & PRED \\
+			MARKAL \cite{feng_standardized_2016}& BNL &  D-D & MAN\\
+			NFCSim \cite{schneider_nfcsim:_2005}& LANL &  D-D & PRED \\
+			NGSAM \cite{aubin_development_2013} & ORNL & NONE & MAN \\
+			{\small NUWASTE \cite{garrick_nuclear_2011}}& NWTRB &  MAN & MAN \\
+			ORION \cite{feng_standardized_2016} & NNL & CONST  & PROP\\
+			VISION \cite{feng_standardized_2016,boucher_international_2010}& INL  & D-D & PROP \\
+			VISTA \cite{iaea_nuclear_2007}& IAEA & D-D & PROP \\ \hline
+		\end{tabularx}}
+		\caption{Simulators, categorized by their reactor and fuel cycle 
+			facility deployment strategies.}
+		\label{tam:sim-deploy}
+	\end{table}
+	
+\end{block}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.1
+
+\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
+
+%----------------------------------------------------------------------------------------
+%	RESULTS
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Promising Algorithms}
+ \begin{itemize}
+ 	\setlength\itemsep{1.5em}
+	\item \textbf{{\Large Non-Optimizing (NO)}}
+	\begin{itemize}
+		\setlength\itemsep{1em}
+		\item {\large Predict based on historical supply-demand data}
+		\item{\large  Does not attempt to meet demand optimally}
+		\item {\large Fast execution time with limited precision}
+		\item {\large E.g. Autoregressive Moving Average (ARMA), Autoregressive Conditional Heteroskedastic (ARCH)}
+	\end{itemize}
+	\item \textbf{{\Large Deterministic Optimizing (DO)}}
+	\begin{itemize}
+		\setlength\itemsep{1em}
+		\item{\large  Minimize or Maximize an objective function with set of constraints}
+		\item {\large Replicable}
+		\item{\large  E.g. Global Change Assessment Model (GCAM), MARKet and ALlocation (MARKAL)}
+	\end{itemize}
+	\item \textbf{{\Large Stochastic Optimizing (SO)}}
+	\begin{itemize}
+		\setlength\itemsep{1em}
+		\item {\large Probabilistic search into the objective function or constraint models}
+		\item {\large Uncertainty in addition to mean}
+		\item {\large Uses random samples from probability distributions}
+		\item {\large E.g. Markov Switching-Model, Gaussian Process Regression}
+	\end{itemize}
+\end{itemize}
+
+
+\end{block}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2
+
+\end{column} % End of the second column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The third column
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Conclusion}
+The review concludes that fuel cycle simulation tools approach scenario objective 
+functions in various ways.
+\begin{itemize}
+	\item wrap in external optimizer
+	\item predict deployment strategy with look-ahead methods
+\end{itemize} 
+These methods fail to realistically model the process by which utilities, governments,
+and other stakeholders actually make facility deployment decisions.
+Dynamic, demand-driven facility deployment may be enabled by algorithms in use in
+other fields. Different deployment models differ in terms of both compute
+speed, flexibility (in terms of the range of scenarios capably
+simulated), and robustness (in terms of consistent fidelity of the modeling results).
+Finally, current NFC simulators may more flexibly support demand-driven deployment
+through incorporation of non-optimizing algorithms such as ARMA \cite{woodard_stationarity_2011} and ARCH \cite{li_kernal_2016},
+deterministically optimizing methods such as those collected in GCAM \cite{edmonds_advanced_1994} and
+MARKAL \cite{fishbone_markal_1981}, or stochastic optimization techniques such as Markov Switching Models \cite{ansari_predicting_2015}.
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
+
+\begin{block}{Acknowledgements}
+
+This research was performed using funding received
+from the DOE Office of Nuclear Energy's Nuclear Energy
+University Programs under award number 16-10512.
+
+\end{block}
+
+
+%----------------------------------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\setbeamercolor{block alerted title}{fg=black,bg=norange} % Change the alert block title colors
+\setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
+
+\begin{alertblock}{Contact Information}
+
+\begin{itemize}
+	
+	\item Web: \href{arfc.github.io}{arfc.github.io}
+	\item Email: \href{mailto:jbae11@illinois.edu}{jbae11@illinois.edu}
+	\item Phone: +1 (217) 377-5784
+\end{itemize}
+
+\end{alertblock}
+
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\linewidth]{logo.png} & \includegraphics[width=0.3\linewidth]{ergs_logo.png} & \includegraphics[width=0.3\linewidth]{neup.png}
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the third column
+
+\end{columns} % End of all the columns in the poster
+
+\end{frame} % End of the enclosing frame
+
+\end{document}
